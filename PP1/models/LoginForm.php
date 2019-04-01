@@ -13,12 +13,12 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $email;
     public $password;
+    private $_userEmail = false;
     public $rememberMe = true;
-
-    private $_user = false;
-
+    public $captcha = null;
+    public $verifyCode;
 
     /**
      * @return array the validation rules.
@@ -27,11 +27,10 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
+            [['email', 'password'], 'required'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            ['verifyCode','captcha'],
         ];
     }
 
@@ -48,7 +47,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Incorrect email or password.');
             }
         }
     }
@@ -60,22 +59,22 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;
     }
 
     /**
-     * Finds user by [[username]]
+     * Finds user by email
      *
-     * @return User|null
+     * @return Registration|null
      */
     public function getUser()
     {
-        if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+        if ($this->_userEmail=== false) {
+            $this->_userEmail = Registration::findByEmail($this->email);
         }
 
-        return $this->_user;
+        return $this->_userEmail;
     }
 }
