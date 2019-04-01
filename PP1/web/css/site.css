@@ -109,7 +109,9 @@ a.desc:after {
 .nav > li > form > button.logout:hover {
     text-decoration: none;
 }
-
+#map {
+    height: 70%;
+}
 .nav > li > form > button.logout:focus {
     outline: none;
 }

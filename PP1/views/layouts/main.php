@@ -23,6 +23,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
 <body>
 <?php $this->beginBody() ?>
 
@@ -39,7 +40,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Rent', 'url' => ['/site/rent']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
@@ -77,5 +78,6 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>
