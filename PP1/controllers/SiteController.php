@@ -125,4 +125,8 @@ class SiteController extends Controller
     {
         return $this->render('rent');
     }
+
+    public function actionRent(){
+        return $this->render('rent');
+    }
 }
