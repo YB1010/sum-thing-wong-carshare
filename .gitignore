@@ -13,7 +13,7 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/PP1/vendor
+PP1/vendor
 
 # composer itself is not needed
 composer.phar
@@ -31,3 +31,5 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+composer_2.phar
+PP1/composer.lock

@@ -117,12 +117,12 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
+     * Displays Rent page.
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionRent()
     {
-        return $this->render('about');
+        return $this->render('rent');
     }
 }
