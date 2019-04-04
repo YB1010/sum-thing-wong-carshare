@@ -15,20 +15,23 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class MapAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
     ];
     public $js = [
-
+        'js/map.js',
     ];
 
-
+//'js/map.js',
+//'//maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap',
     public $depends = [
+
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+
 }
