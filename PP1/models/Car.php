@@ -8,8 +8,10 @@ use Yii;
  * This is the model class for table "car".
  *
  * @property int $id
- * @property string $status
+ * @property string $latitude
+ * @property string $longitude
  * @property string $pendingTime
+ * @property string $inUse
  */
 class Car extends \yii\db\ActiveRecord
 {
@@ -27,8 +29,9 @@ class Car extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'pendingTime'], 'required'],
-            [['status', 'pendingTime'], 'string', 'max' => 30],
+            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'required'],
+            [['latitude', 'longitude'], 'string'],
+            [['pendingTime', 'inUse'], 'string', 'max' => 30],
         ];
     }
 
@@ -39,16 +42,10 @@ class Car extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' => 'Status',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
             'pendingTime' => 'Pending Time',
+            'inUse' => 'In Use',
         ];
     }
-
-    public function pendingTime(){
-        $model = new Car();
-        if(isset($_POST['booking1'])){
-            $model::updateAll(['status' => 'unavailable'], ['id' => '1']);
-        }
-    }
-
 }

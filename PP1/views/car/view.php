@@ -29,8 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'status',
+            'latitude:ntext',
+            'longitude:ntext',
             'pendingTime',
+            'inUse',
         ],
     ]) ?>
 

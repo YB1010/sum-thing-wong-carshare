@@ -19,7 +19,7 @@ class CarSearch extends Car
     {
         return [
             [['id'], 'integer'],
-            [['status', 'pendingTime'], 'safe'],
+            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'safe'],
         ];
     }
 
@@ -62,8 +62,10 @@ class CarSearch extends Car
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'pendingTime', $this->pendingTime]);
+        $query->andFilterWhere(['like', 'latitude', $this->latitude])
+            ->andFilterWhere(['like', 'longitude', $this->longitude])
+            ->andFilterWhere(['like', 'pendingTime', $this->pendingTime])
+            ->andFilterWhere(['like', 'inUse', $this->inUse]);
 
         return $dataProvider;
     }

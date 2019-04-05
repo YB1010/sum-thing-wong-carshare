@@ -17,9 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'latitude') ?>
+
+    <?= $form->field($model, 'longitude') ?>
 
     <?= $form->field($model, 'pendingTime') ?>
+
+    <?= $form->field($model, 'inUse') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
