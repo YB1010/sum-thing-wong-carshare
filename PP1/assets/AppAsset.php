@@ -22,10 +22,18 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
     ];
+    //js settings
     public $js = [
+        'js/jquery-3.3.1.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+//        'yii\web\JqueryAsset',
     ];
+
+    // Import js file settings
+    public static function addScript($view, $jsFile) {
+        $view->registerJsFile($jsFile, [AppAsset::class, 'depends' => 'app\assets\AppAsset']);
+    }
 }
