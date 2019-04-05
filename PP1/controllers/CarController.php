@@ -134,6 +134,8 @@ class CarController extends Controller
         $model = new Car();
 
         self::BookingStatus();
+
+
 //        self::confirmStatus();
         return $this->render('booking');
     }
@@ -150,7 +152,7 @@ class CarController extends Controller
 //    public static function confirmStatus()
 //    {
 //        $model = new Car();
-//        $model::updateAll(['pendingTime' => 'off'],['id' => 1]);
+//        $model::updateAll(['pendingTime' => 'false'],['id' => 1]);
 //    }
 
 }

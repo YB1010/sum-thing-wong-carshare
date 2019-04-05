@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0f13b0d-b469-4532-9966-5517af541d02" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sum-thing-wong-carshare.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sum-thing-wong-carshare.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PP1/controllers/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/controllers/CarController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/models/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/models/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/models/CarSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/models/CarSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/views/car/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/views/car/_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/views/car/_search.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/views/car/_search.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/views/car/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/views/car/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/views/car/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/views/car/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/views/car/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/views/car/update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PP1/views/car/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/views/car/view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,40 +21,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PP1/assets/AppAsset.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PP1/models/Car.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PP1/views/car/booking.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-              <folding>
-                <element signature="e#128#152#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PP1/controllers/CarController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="134" selection-start-line="134" selection-end-line="134" />
+            <state relative-caret-position="255">
+              <caret line="142" column="40" selection-start-line="142" selection-start-column="27" selection-end-line="142" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -70,26 +32,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="289">
+              <caret line="17" column="81" selection-start-line="17" selection-start-column="81" selection-end-line="17" selection-end-column="81" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PP1/models/CarSearch.php">
+        <entry file="file://$PROJECT_DIR$/PP1/views/car/booking.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-760" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PP1/views/layouts/main.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+            <state relative-caret-position="340">
+              <caret line="25" column="97" selection-start-line="25" selection-start-column="89" selection-end-line="25" selection-end-column="97" />
               <folding>
-                <element signature="e#66#88#0#PHP" expanded="true" />
+                <element signature="e#128#152#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,8 +86,8 @@
         <option value="$PROJECT_DIR$/PP1/assets/AppAsset.php" />
         <option value="$PROJECT_DIR$/PP1/models/Car.php" />
         <option value="$PROJECT_DIR$/PP1/views/car/booking.php" />
-        <option value="$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js" />
         <option value="$PROJECT_DIR$/PP1/controllers/CarController.php" />
+        <option value="$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js" />
       </list>
     </option>
   </component>
@@ -220,7 +175,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,12 +209,6 @@
               <item name="sum-thing-wong-carshare" type="b2602c69:ProjectViewProjectNode" />
               <item name="sum-thing-wong-carshare" type="462c0819:PsiDirectoryNode" />
               <item name="PP1" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sum-thing-wong-carshare" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sum-thing-wong-carshare" type="462c0819:PsiDirectoryNode" />
-              <item name="PP1" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -269,13 +217,6 @@
               <item name="PP1" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="car" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sum-thing-wong-carshare" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sum-thing-wong-carshare" type="462c0819:PsiDirectoryNode" />
-              <item name="PP1" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="site" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sum-thing-wong-carshare" type="b2602c69:ProjectViewProjectNode" />
@@ -294,6 +235,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,13 +246,13 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\study\PP1\sum-thing-wong-carshare\PP1\web\js" />
-      <recent name="C:\study\PP1\sum-thing-wong-carshare\PP1" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\study\PP1\sum-thing-wong-carshare\PP1\web\js" />
       <recent name="C:\study\PP1\sum-thing-wong-carshare\PP1\views\car" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\study\PP1\sum-thing-wong-carshare\PP1\web\js" />
+      <recent name="C:\study\PP1\sum-thing-wong-carshare\PP1" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -342,17 +284,18 @@
       <workItem from="1554091549420" duration="960000" />
       <workItem from="1554162285002" duration="536000" />
       <workItem from="1554355267605" duration="19081000" />
+      <workItem from="1554465978188" duration="906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35189000" />
+    <option name="totallyTimeSpent" value="35858000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19109312" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19433199" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -366,7 +309,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Migrations" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.103019536" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.08525755" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -437,21 +380,11 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/PP1/views/car/jquery-3.3.1.min.js" />
-    <entry file="file://$PROJECT_DIR$/PP1/views/layouts/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
-          <folding>
-            <element signature="e#66#88#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.js" />
     <entry file="file://$PROJECT_DIR$/PP1/assets/AppAsset.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+        <state relative-caret-position="289">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -467,27 +400,44 @@
         <state relative-caret-position="-760" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PP1/views/car/booking.php">
+    <entry file="file://$PROJECT_DIR$/PP1/vendor/composer/autoload_real.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        <state relative-caret-position="317">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PP1/views/layouts/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
           <folding>
-            <element signature="e#128#152#0#PHP" expanded="true" />
+            <element signature="e#66#88#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PP1/controllers/CarController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="134" selection-start-line="134" selection-end-line="134" />
+        <state relative-caret-position="255">
+          <caret line="142" column="40" selection-start-line="142" selection-start-column="27" selection-end-line="142" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PP1/views/car/booking.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" column="97" selection-start-line="25" selection-start-column="89" selection-end-line="25" selection-end-column="97" />
+          <folding>
+            <element signature="e#128#152#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="289">
+          <caret line="17" column="81" selection-start-line="17" selection-start-column="81" selection-end-line="17" selection-end-column="81" />
         </state>
       </provider>
     </entry>
