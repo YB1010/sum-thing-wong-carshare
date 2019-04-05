@@ -132,7 +132,9 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
-
+//        if(isset($_POST['booking1'])){
+//            self::BookingStatus();
+//        }
         self::BookingStatus();
 
 
