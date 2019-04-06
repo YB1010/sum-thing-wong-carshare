@@ -1,8 +1,8 @@
 /*jshint unused:false*/
 /*jshint strict:false */
 /*jshint esversion: 6 */
-
 var map, infoWindow;
+
 function Car(id, Lat, Lng, pending, inUse) {
     this.id = id;
     this.Lat = Lat;
@@ -35,20 +35,7 @@ var cars = [
         inUse: 'n'
     }
 ];
-function callDistance(userLatLng, car,fn) {
 
-    var service = new google.maps.DistanceMatrixService();
-    var origin = new google.maps.LatLng(userLatLng.latitude,userLatLng.longitude);
-    var destination = new google.maps.LatLng(car.latitude,car.longitude);
-    service.getDistanceMatrix(
-        {
-            origins: [origin],
-            destinations: [destination],
-            travelMode: 'WALKING'
-        }, function callback(response, status){
-         fn(response.rows[0].elements[0].distance.text);
-    });
-}
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;

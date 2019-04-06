@@ -23,6 +23,7 @@ class MapAsset extends AssetBundle
     ];
     public $js = [
         'js/map.js',
+        'js/callDistance.js'
     ];
 
 //'js/map.js',
