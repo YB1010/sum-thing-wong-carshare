@@ -14,15 +14,17 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 $this->title = 'Booking car';
-//import js file
-AppAsset::addScript($this, Yii::$app->request->baseUrl . 'web/js/jquery-3.3.1.min.js');
+
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
+
 </head>
 <body>
 
 <span id="count"></span>
+
 <?= HTML::Button('Booking', ['class' => 'btn btn-primary','id'=>'startClocking','name'=>'booking1']) ?>&emsp14;
-<?= HTML::Button('Confirm', ['class' => 'btn btn-primary','id'=>'stopPending','name'=>'confirm1']) ?>
+
+<?=Html::a('Confirm',['car/confirm-status'],['class' =>'btn btn-success'])?>
 </body>

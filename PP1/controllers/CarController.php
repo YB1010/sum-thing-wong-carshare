@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -132,29 +133,32 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
-//        if(isset($_POST['booking1'])){
-//            self::BookingStatus();
-//        }
-        self::BookingStatus();
-
-
-//        self::confirmStatus();
+        //inUse changes and pending time changes to true when click booking
+        if (Yii::$app->request->isAjax) {
+            $command = Yii::$app->db->createCommand();
+            try {
+                $command->update('car', ['pendingTime' => 'true', 'inUse' => 'true'], 'id = 1')->execute();
+            } catch (Exception $e) {
+                printf("Cannot update data");
+            }
+        }
         return $this->render('booking');
     }
 
-    public static function BookingStatus()
+    //if user clicks of confirm button, pending becomes false
+    public function actionConfirmStatus()
     {
         $model = new Car();
-        //status changes to unavailable when click booking
-        $model::updateAll(['pendingTime' => 'true'], ['id' => 1]);
-        //pendingTime changes to on when click booking
-        $model::updateAll(['inUse' => 'true'], ['id' => 1]);
+        $model::updateAll(['pendingTime' => 'false'], ['id' => 1]);
+        return $this->render('confirm-status');
     }
 
-//    public static function confirmStatus()
-//    {
-//        $model = new Car();
-//        $model::updateAll(['pendingTime' => 'false'],['id' => 1]);
-//    }
-
+    /*If pending time over and user doesn't click of confirm button
+      Pending becomes false, Inuse becomes false
+    */
+    public function actionTimePassed()
+    {
+        $model = new Car();
+        $model::updateAll(['pendingTime' => 'false', 'inUse' => 'false'], ['id' => 1]);
+    }
 }
