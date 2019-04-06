@@ -17,35 +17,60 @@ var cars = [
         id: 1,
         latitude: -37.781827,
         longitude: 145.167733,
-        pending: false,
-        inUse: false
+        pending: 'n',
+        inUse: 'n'
     },
     {
         id: 2,
         latitude: -37.782222,
         longitude: 145.166666,
-        pending: false,
-        inUse: false
+        pending: 'n',
+        inUse: 'n'
     },
     {
         id: 3,
         latitude: -37.785555,
         longitude: 145.163463,
-        pending: false,
-        inUse: false
+        pending: 'n',
+        inUse: 'n'
     }
 ];
-function showCarsOnMap(map,carlist,image) {
+function callDistance(userLatLng, car,fn) {
 
-    for (let i = 0; i < carlist.length; i++) {
-        if(carlist[i].pending||carlist[i].inUse){
-            continue;
-        }
-        let contentString = 'Car:'+carlist[i].id+'</br><button>Rent</button>';
+    var service = new google.maps.DistanceMatrixService();
+    var origin = new google.maps.LatLng(userLatLng.latitude,userLatLng.longitude);
+    var destination = new google.maps.LatLng(car.latitude,car.longitude);
+    service.getDistanceMatrix(
+        {
+            origins: [origin],
+            destinations: [destination],
+            travelMode: 'WALKING'
+        }, function callback(response, status){
+         fn(response.rows[0].elements[0].distance.text);
+    });
+}
+function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
+    callDistance(userLatLng, carInfo,function (distance) {
+        var distanceStr=distance;
+        let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+'</br><button>Rent</button>';
 
         let popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
+        carMaker.addListener('click', function() {
+            popupWindow.open(map, carMaker);
+        });
+    })
+}
+function showCarsOnMap(userLatLng,map,carlist,image) {
+
+    for (let i = 0; i < carlist.length; i++) {
+
+        if(carlist[i].pending === 'y'||carlist[i].inUse === 'y'){
+            continue;
+        }
+
+
         let car = new google.maps.Marker({
             position: {
                 lat: carlist[i].latitude,
@@ -54,13 +79,11 @@ function showCarsOnMap(map,carlist,image) {
             icon: image,
             map: map
         });
-        car.addListener('click', function() {
-            popupWindow.open(map, car);
-        });
+        displayPopupWindows(car,carlist[i],map,userLatLng);
     }
 
 }
- 
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
@@ -85,7 +108,11 @@ function initMap() {
 //http://pngimg.com/uploads/taxi/taxi_PNG7.png
             var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
-            showCarsOnMap(map,cars,image);
+            let userLatLng = {
+                latitude: user.getPosition().lat(),
+                longitude: user.getPosition().lng()
+            };
+            showCarsOnMap(userLatLng, map, cars, image);
 
 
         }, function() {
