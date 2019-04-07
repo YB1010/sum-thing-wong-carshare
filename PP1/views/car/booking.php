@@ -25,6 +25,5 @@ $this->title = 'Booking car';
 <span id="count"></span>
 
 <?= HTML::Button('Booking', ['class' => 'btn btn-primary','id'=>'startClocking','name'=>'booking1']) ?>&emsp14;
-
-<?=Html::a('Confirm',['car/confirm-status'],['class' =>'btn btn-success'])?>
+<?= HTML::Button('Confirm', ['class' => 'btn btn-primary','id'=>'stopPending','name'=>'confirm1']) ?>
 </body>

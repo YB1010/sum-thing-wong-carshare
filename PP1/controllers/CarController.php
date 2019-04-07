@@ -149,8 +149,8 @@ class CarController extends Controller
     public function actionConfirmStatus()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'false'], ['id' => 1]);
-        return $this->render('confirm-status');
+        $model::updateAll(['pendingTime' => 'false','inUse' => 'true'], ['id' => 1]);
+//        return $this->render('confirm-status');
     }
 
     /*If pending time over and user doesn't click of confirm button
