@@ -85,6 +85,7 @@ GoogleMapCallback::register($this);
 <body>
 <h1>asdasdasd</h1>
 
+<div id="map">aaa</div>
 
 
 
