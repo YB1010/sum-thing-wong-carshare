@@ -39,21 +39,23 @@ var cars = [
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
-        let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+'</br><button>Rent</button>';
-
+        let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
+            '</br><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking1">Book</button>' +
+            '<button class="btn btn-primary" id="stopPending" name="confirm1" display="none">Confirm</button>';
         let popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
         carMaker.addListener('click', function() {
             popupWindow.open(map, carMaker);
+            $.getScript('js/jquery-3.3.1.min.js');
         });
-    })
+    });
 }
 function showCarsOnMap(userLatLng,map,carlist,image) {
 
     for (let i = 0; i < carlist.length; i++) {
 
-        if(carlist[i].pending === 'y'||carlist[i].inUse === 'y'){
+        if(carlist[i].pendingTime === 'true'||carlist[i].inUse === 'true'){
             continue;
         }
 
@@ -77,7 +79,7 @@ function initMap() {
         zoom: 18
         //18
     });
-    infoWindow = new google.maps.InfoWindow;
+    infoWindow = new google.maps.InfoWindow();
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -118,4 +120,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
-window.alert(document.getElementById('map').innerText);

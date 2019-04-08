@@ -33,3 +33,4 @@ tests/_support/_generated
 /.vagrant
 composer_2.phar
 PP1/composer.lock
+PP1/config/db.php
