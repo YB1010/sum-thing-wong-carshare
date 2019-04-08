@@ -36,13 +36,14 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    //  ['label' => 'rentTest', 'url' =>['/map/rent']],
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Rent', 'url' => ['/site/rent']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'rentTest', 'url' =>['/map/rent']],
+            ['label' => 'Booking', 'url' =>['/car/booking']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
