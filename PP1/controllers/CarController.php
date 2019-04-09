@@ -133,11 +133,11 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
-        //inUse changes and pending time changes to true when click booking
+        //when user clicks booking, pending time becomes to on. Inuse status becomes to pending
         if (Yii::$app->request->isAjax) {
             $command = Yii::$app->db->createCommand();
             try {
-                $command->update('car', ['pendingTime' => 'true', 'inUse' => 'true'], 'id = 1')->execute();
+                $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
             } catch (Exception $e) {
                 printf("Cannot update data");
             }
@@ -145,20 +145,20 @@ class CarController extends Controller
         return $this->render('booking');
     }
 
-    //if user clicks of confirm button, pending becomes false
+    //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
     public function actionConfirmStatus()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'false','inUse' => 'true'], ['id' => 1]);
+        $model::updateAll(['pendingTime' => 'off','inUse' => 'confirmed'], ['id' => 1]);
 //        return $this->render('confirm-status');
     }
 
     /*If pending time over and user doesn't click of confirm button
-      Pending becomes false, Inuse becomes false
+      Pending becomes off, Inuse becomes available
     */
     public function actionTimePassed()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'false', 'inUse' => 'false'], ['id' => 1]);
+        $model::updateAll(['pendingTime' => 'false', 'inUse' => 'available'], ['id' => 1]);
     }
 }
