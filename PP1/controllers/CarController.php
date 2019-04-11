@@ -134,14 +134,7 @@ class CarController extends Controller
     {
         $model = new Car();
         //when user clicks booking, pending time becomes to on. Inuse status becomes to pending
-        if (Yii::$app->request->isAjax) {
-            $command = Yii::$app->db->createCommand();
-            try {
-                $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
-            } catch (Exception $e) {
-                printf("Cannot update data");
-            }
-        }
+
         return $this->render('booking');
     }
 
@@ -149,7 +142,7 @@ class CarController extends Controller
     public function actionConfirmStatus()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'off','inUse' => 'confirmed'], ['id' => 1]);
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => 1]);
 //        return $this->render('confirm-status');
     }
 
@@ -159,6 +152,24 @@ class CarController extends Controller
     public function actionTimePassed()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'false', 'inUse' => 'available'], ['id' => 1]);
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 1]);
+    }
+
+    public function actionBookingStatus()
+    {
+
+    }
+
+    public function actionCarConfirmed()
+    {
+
+        $command = Yii::$app->db->createCommand();
+        try {
+            $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
+        } catch (Exception $e) {
+            printf("Cannot update data");
+        }
+
+        return $this->render('car-confirmed');
     }
 }

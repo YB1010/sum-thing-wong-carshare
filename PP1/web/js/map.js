@@ -40,8 +40,7 @@ function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
         let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
-            '</br><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking1">Book</button>' +
-            '<button class="btn btn-primary" id="stopPending" name="confirm1" display="none">Confirm</button>';
+            '</br><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking1">Book</button>';
         let popupWindow = new google.maps.InfoWindow({
             content: contentString
         });

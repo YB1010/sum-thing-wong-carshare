@@ -34,7 +34,7 @@ class AppAsset extends AssetBundle
     ];
 
     // Import js file settings
-    public static function addScript($view, $jsFile) {
-        $view->registerJsFile($jsFile, [AppAsset::class, 'depends' => 'app\assets\AppAsset']);
-    }
+//    public static function addScript($view, $jsFile) {
+//        $view->registerJsFile($jsFile, [AppAsset::class, 'depends' => 'app\assets\AppAsset']);
+//    }
 }

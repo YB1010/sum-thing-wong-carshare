@@ -20,23 +20,20 @@ MapAsset::register($this);
 
 use app\assets\GoogleMapCallback;
 GoogleMapCallback::register($this);
-
+\app\assets\AppAsset::register($this);
 $this->title = 'Booking car';
 $cars = Car::find()->orderBy('id')->all();
 $carList = ArrayHelper::toArray($cars, [
     'app\models\Car' => [
         'id',
-        'latitude' => function($post){
-            return $temp = $post->latitude+0;
-        },
-        'longitude' => function($post){
-            return $temp = $post->longitude+0;
-        },
+        'latitude',
+        'longitude',
         'pendingTime',
         'inUse',
     ],
 ]);
-
+$jsonCar=json_encode($carList);
+echo $jsonCar;
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>

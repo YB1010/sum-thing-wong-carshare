@@ -105,7 +105,7 @@ class RegisterListenersPass implements CompilerPassInterface
                 $definition->addMethodCall('addListener', $args);
 
                 if (isset($this->hotPathEvents[$args[0]])) {
-                    $container->getDefinition($id)->addTag($this->hotPathTagName);
+                    $container->getDefinition($id)->addTag('container.hot_path');
                 }
             }
             $extractingDispatcher->listeners = [];
