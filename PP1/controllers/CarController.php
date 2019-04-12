@@ -131,11 +131,14 @@ class CarController extends Controller
      * It has a pending time.
      */
     public function actionBooking()
-    {
-        $model = new Car();
-        //when user clicks booking, pending time becomes to on. Inuse status becomes to pending
+    {   $model = new Car();
+        if(isset($_POST['booking1'])){
+//            return $this->render('car-confirmed');
+            return $this->redirect(array('site/index'));
+        }else{
+            return $this->render('booking');
+        }
 
-        return $this->render('booking');
     }
 
     //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
@@ -157,19 +160,20 @@ class CarController extends Controller
 
     public function actionBookingStatus()
     {
-
-    }
-
-    public function actionCarConfirmed()
-    {
-
         $command = Yii::$app->db->createCommand();
         try {
             $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
         } catch (Exception $e) {
             printf("Cannot update data");
         }
+    }
+
+    public function actionCarConfirmed()
+    {
 
         return $this->render('car-confirmed');
+    }
+    public function actionTest(){
+        return $this->redirect(['car/car-confirmed']);
     }
 }
