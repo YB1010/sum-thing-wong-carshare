@@ -29,7 +29,6 @@ class MapAsset extends AssetBundle
 //'js/map.js',
 //'//maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap',
     public $depends = [
-
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
