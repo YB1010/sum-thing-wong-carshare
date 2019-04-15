@@ -3,12 +3,14 @@
 /*jshint esversion: 6 */
 var map, infoWindow;
 
-function Car(id, Lat, Lng, pending, inUse) {
+function Car(id, Lat, Lng, pending, inUse, carName,carImgUrl ) {
     this.id = id;
     this.Lat = Lat;
     this.Lng = Lng;
     this.pending = pending;
     this.inUse = inUse;
+    this.carName = carName;
+    this.carImgUrl = carImgUrl;
 }
 
 //get the cars data from database
@@ -40,7 +42,7 @@ function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
         let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
-            '</br><input type="submit" class="btn btn-primary" id="startClocking" name="booking1" value="Book">';
+            '</br><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking1">Book</button>';
         let popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
