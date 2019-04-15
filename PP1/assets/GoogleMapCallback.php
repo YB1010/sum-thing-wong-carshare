@@ -22,7 +22,7 @@ class GoogleMapCallback extends AssetBundle
     public $css = [
     ];
     public $js = [
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap'
     ];
 
 //'js/map.js',

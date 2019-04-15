@@ -21,20 +21,14 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'bootstrap.min.css'
     ];
-    //js settings
     public $js = [
-        'js/jquery-3.3.1.min.js',
+        'js/bootstrap.min.js',
+        'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry'
     ];
-
-
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
-
-    // Import js file settings
-//    public static function addScript($view, $jsFile) {
-//        $view->registerJsFile($jsFile, [AppAsset::class, 'depends' => 'app\assets\AppAsset']);
-//    }
 }
