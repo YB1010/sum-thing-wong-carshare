@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use dosamigos\google\maps\Size;
 use Yii;
+use yii\db\Exception;
 
 /**
  * This is the model class for table "car".
@@ -48,4 +50,18 @@ class Car extends \yii\db\ActiveRecord
             'inUse' => 'In Use',
         ];
     }
+    public function updateBookingStatus(){
+        $command = Yii::$app->db->createCommand();
+
+        $dataArray = Car::find()->asArray()->all();
+        try {
+//            for($i=0;$i<sizeof($dataArray);$i++){
+                $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
+//            }
+
+        } catch (Exception $e) {
+            printf("Cannot update data");
+        }
+    }
+
 }

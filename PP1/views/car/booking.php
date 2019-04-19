@@ -5,15 +5,20 @@
  * Date: 4/04/2019
  * Time: 4:36 PM
  */
+
 /* @var $this \yii\web\View */
+
 use app\assets\AppAsset;
 use app\models\Car;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use app\assets\MapAsset;
+
 MapAsset::register($this);
+
 use app\assets\GoogleMapCallback;
+
 GoogleMapCallback::register($this);
 \app\assets\AppAsset::register($this);
 $this->title = 'Booking car';
@@ -33,23 +38,26 @@ $data = ArrayHelper::toArray($cars, [
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
+    <?= Html::csrfMetaTags() ?>
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
-        #border{
+        #border {
             margin-left: 50px;
-            width:800px;
+            width: 800px;
             float: left;
             position: relative;
         }
-        #son_div{
+
+        #son_div {
             margin-top: 20px;
             width: 800px;
-            height:auto;
+            height: auto;
             float: left;
-            border:1px solid red;
+            border: 1px solid red;
             position: relative;
         }
+
         #map {
             margin-left: -145px;
             width: 432px;
@@ -57,6 +65,7 @@ $data = ArrayHelper::toArray($cars, [
             overflow: hidden;
             float: left;
         }
+
         /* Optional: Makes the sample page fill the window. */
         /* The popup bubble styling. */
         .popup-bubble {
@@ -72,8 +81,9 @@ $data = ArrayHelper::toArray($cars, [
             font-family: sans-serif;
             overflow-y: auto;
             max-height: 60px;
-            box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+            box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
         }
+
         /* The parent of the bubble. A zero-height div at the top of the tip. */
         .popup-bubble-anchor {
             /* Position the div a fixed distance above the tip. */
@@ -82,6 +92,7 @@ $data = ArrayHelper::toArray($cars, [
             bottom: /* TIP_HEIGHT= */ 8px;
             left: 0;
         }
+
         /* This element draws the tip. */
         .popup-bubble-anchor::after {
             content: "";
@@ -98,6 +109,7 @@ $data = ArrayHelper::toArray($cars, [
             border-right: 6px solid transparent;
             border-top: /* TIP_HEIGHT= */ 8px solid white;
         }
+
         /* JavaScript will position this div at the bottom of the popup tip. */
         .popup-container {
             cursor: auto;
@@ -113,59 +125,64 @@ $data = ArrayHelper::toArray($cars, [
 
 <div id="map"></div>
 <form action="" method="post">
-<div id="border">
-    <?php
-    for($i=0;$i<sizeof($data);$i++){
-        ?>
-        <div id="son_div" style="border:1px solid gray;">
-            <div style="float:left;width:450px;">
-                <div style="width:450px;height:180px;"><img src="img/<?php echo $data[$i]['carImgUrl']; ?>"></div>
-                <div style="width:450px;height:40px;font-size:25px;
-				 	 margin-left: 20%"><b><?php echo $data[$i]['carName']; ?></b>&nbsp&nbsp <font size="1px" color="gray">or Similar</font></div>
-            </div>
-            <div style="float:left;width:300px;margin-top:35px;">
-                <div style="width:300px;height:80px;float:left;
-				 	 "><img src="tu.png" style="width: 30px;height: 40px">
-                    &nbsp&nbsp&nbsp
-                    <font color="gray" size="5px">Mileage</font>
-                </div>
-                <div style="width:300px;height:50px;float:left;
-				 	 "><font size="4px" color="#26DB3C" id="tx<?php echo $i; ?>" >
-
-                        <?php if($data[$i]['pendingTime']=="n"||$data[$i]['inUse']=="n"){
-                            echo "Unlimited";
-                        }else{
-                            ?>
-                            <script>
-                                if (navigator.geolocation){
-                                    navigator.geolocation.getCurrentPosition(function(position) {
-                                        var lat = position.coords.latitude;
-                                        var lng = position.coords.longitude;
-                                        console.log(lat);
-                                        var p1 = new google.maps.LatLng(lat, lng);
-                                        var p2 = new google.maps.LatLng(<?php echo $data[$i]['latitude']; ?>, <?php echo $data[$i]['longitude']; ?>);
-                                        var km = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2)/ 1000).toFixed(2);
-                                        document.getElementById('tx<?php echo $i; ?>').innerHTML = km+" km per rental" ;
-                                    });
-
-                                }
-                            </script>
-                            <?php
-                        }
-                        ?>
-                    </font>
-                </div>
-                <div style="width:300px;height:50px;float:left;text-align: right
-				 	 ">
-                    <span id="count<?php echo $i; ?>"></span><button class="btn btn-primary" id="startClocking" name="booking1" style="">Book</button>
-                </div>
-            </div>
-
-        </div>
+    <div id="border">
         <?php
-    }
-    ?>
-</div>
+        for ($i = 0; $i < sizeof($data); $i++) {
+            ?>
+            <div id="son_div" style="border:1px solid gray;">
+                <div style="float:left;width:450px;">
+                    <div style="width:450px;height:180px;"><img src="img/<?php echo $data[$i]['carImgUrl']; ?>"></div>
+                    <div style="width:450px;height:40px;font-size:25px;
+				 	 margin-left: 20%"><b><?php echo $data[$i]['carName']; ?></b>&nbsp&nbsp <font size="1px"
+                                                                                                   color="gray">or
+                            Similar</font></div>
+                </div>
+                <div style="float:left;width:300px;margin-top:35px;">
+                    <div style="width:300px;height:80px;float:left;
+				 	 "><img src="tu.png" style="width: 30px;height: 40px">
+                        &nbsp&nbsp&nbsp
+                        <font color="gray" size="5px">Mileage</font>
+                    </div>
+                    <div style="width:300px;height:50px;float:left;
+				 	 "><font size="4px" color="#26DB3C" id="tx<?php echo $i; ?>">
+
+                            <?php if ($data[$i]['pendingTime'] == "n" || $data[$i]['inUse'] == "n") {
+                                echo "Unlimited";
+                            } else {
+                                ?>
+                                <script>
+                                    if (navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(function (position) {
+                                            var lat = position.coords.latitude;
+                                            var lng = position.coords.longitude;
+                                            console.log(lat);
+                                            var p1 = new google.maps.LatLng(lat, lng);
+                                            var p2 = new google.maps.LatLng(<?php echo $data[$i]['latitude']; ?>, <?php echo $data[$i]['longitude']; ?>);
+                                            var km = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+                                            document.getElementById('tx<?php echo $i; ?>').innerHTML = km + " km per rental";
+                                        });
+
+                                    }
+                                </script>
+                                <?php
+                            }
+                            ?>
+                        </font>
+                    </div>
+                    <div style="width:300px;height:50px;float:left;text-align: right
+				 	 ">
+                        <span id="count<?php echo $i; ?>"></span>
+                        <button class="btn btn-primary" id="startClocking<?php echo $i; ?>" name="booking2" style="" >
+                            Book<?php echo $i; ?></button>
+                        <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+                    </div>
+                </div>
+
+            </div>
+            <?php
+        }
+        ?>
+    </div>
 </form>
 
 </body>

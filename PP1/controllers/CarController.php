@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
-use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -131,11 +130,11 @@ class CarController extends Controller
      * It has a pending time.
      */
     public function actionBooking()
-    {   $model = new Car();
-        if(isset($_POST['booking1'])){
-//            return $this->render('car-confirmed');
-            return $this->redirect(array('site/index'));
-        }else{
+    {
+        $model = new Car();
+        if (isset($_POST['booking2'])) {
+            return $this->redirect(['car/car-confirmed']);
+        } else {
             return $this->render('booking');
         }
 
@@ -160,20 +159,13 @@ class CarController extends Controller
 
     public function actionBookingStatus()
     {
-        $command = Yii::$app->db->createCommand();
-        try {
-            $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
-        } catch (Exception $e) {
-            printf("Cannot update data");
-        }
+        $model = new Car();
+        $model->updateBookingStatus();
     }
 
     public function actionCarConfirmed()
     {
-
         return $this->render('car-confirmed');
     }
-    public function actionTest(){
-        return $this->redirect(['car/car-confirmed']);
-    }
+
 }
