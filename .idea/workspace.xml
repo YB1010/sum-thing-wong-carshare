@@ -91,6 +91,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/PP1/port.sql" />
+        <option value="$PROJECT_DIR$/PP1/config/db.php" />
         <option value="$PROJECT_DIR$/PP1/views/registration/signup.php" />
         <option value="$PROJECT_DIR$/PP1/views/registration/signUp.php" />
         <option value="$PROJECT_DIR$/PP1/models/Registration.php" />
@@ -202,6 +203,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
