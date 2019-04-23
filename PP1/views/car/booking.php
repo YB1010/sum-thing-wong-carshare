@@ -146,7 +146,7 @@ $data = ArrayHelper::toArray($cars, [
                     <div style="width:300px;height:50px;float:left;
 				 	 "><font size="4px" color="#26DB3C" id="tx<?php echo $i; ?>">
 
-                            <?php if ($data[$i]['pendingTime'] == "n" || $data[$i]['inUse'] == "n") {
+                            <?php if ($data[$i]['pendingTime'] == "false" && $data[$i]['inUse'] != "available") {
                                 echo "Unlimited";
                             } else {
                                 ?>
