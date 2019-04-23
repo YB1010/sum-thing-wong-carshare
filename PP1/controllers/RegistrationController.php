@@ -152,7 +152,8 @@ class RegistrationController extends Controller
     {
         $model = new Registration();
         if ($model->load(Yii::$app->request->post()) && $model->signUp()) {
-            return $this->redirect(array('site/index'));
+
+            return $this->redirect(array('car/booking'));
         } else {
             return $this->render('signUp', ['model' => $model]);
         }
@@ -161,7 +162,7 @@ class RegistrationController extends Controller
     public function actionSignin(){
         $model = new LoginForm();
         if($model->load(Yii::$app->request->post())&&$model->login()){
-            return $this->redirect(array('site/about'));
+            return $this->redirect(array('car/booking'));
         }else{
             return $this->render('signIn', ['model' => $model]);
         }

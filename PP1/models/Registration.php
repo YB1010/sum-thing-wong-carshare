@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\web\IdentityInterface;
+use  yii\web\Session;
 
 /**
  * This is the model class for table "registration".
@@ -72,6 +73,9 @@ class Registration extends \yii\db\ActiveRecord implements IdentityInterface
             $model->password = md5($model->password);
             $model->passwordVerify = md5($model->passwordVerify);
         }
+        $session = Yii::$app->session;
+        $session->open();
+        $session->set('email', $this->email);
         return $model->save(false);
     }
 

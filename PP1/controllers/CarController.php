@@ -8,7 +8,7 @@ use app\models\CarSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use  yii\web\Session;
 /**
  * CarController implements the CRUD actions for Car model.
  */
@@ -132,12 +132,16 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
+        $session = Yii::$app->session;
         if (isset($_POST['booking2'])) {
-            return $this->redirect(['car/car-confirmed']);
+            if($session->has('email')) {
+                return $this->redirect(['car/car-confirmed']);
+            }else{
+                return $this->redirect(array('registration/signin'));
+            }
         } else {
             return $this->render('booking');
         }
-
     }
 
     //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
