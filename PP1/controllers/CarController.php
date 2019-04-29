@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\LoginForm;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
@@ -131,14 +132,17 @@ class CarController extends Controller
      */
     public function actionBooking()
     {
-        $model = new Car();
         $session = Yii::$app->session;
+        $session->open();
+        $cars = Car::find()->all();
+        $model = new LoginForm();
         if (isset($_POST['booking2'])) {
-            if($session->has('email')) {
+//            if($session->has('email')) {
+//            if($model->login()){
                 return $this->redirect(['car/car-confirmed']);
-            }else{
-                return $this->redirect(array('registration/signin'));
-            }
+//            }else{
+//                return $this->redirect(array('registration/signin'));
+//            }
         } else {
             return $this->render('booking');
         }

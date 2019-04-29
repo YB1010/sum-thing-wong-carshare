@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Car;
 use app\models\LoginForm;
 use Yii;
 use app\models\Registration;
@@ -162,7 +163,7 @@ class RegistrationController extends Controller
     public function actionSignin(){
         $model = new LoginForm();
         if($model->load(Yii::$app->request->post())&&$model->login()){
-            return $this->redirect(array('car/booking'));
+            return $this->redirect(['car/booking']);
         }else{
             return $this->render('signIn', ['model' => $model]);
         }

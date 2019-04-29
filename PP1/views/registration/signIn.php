@@ -34,6 +34,7 @@ use yii\helpers\Html; ?>
 <div class="form-group">
     <div class="col-lg-offset-1 col-lg-11">
         <?= HTML::submitButton('Sign in', ['class' => 'btn btn-primary']) ?>
+        <p>Apply for an account <a href="index.php?r=registration/signup">Sign up</a></p>
     </div>
 </div>
 <?php ActiveForm::end() ?>
