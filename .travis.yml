@@ -10,5 +10,5 @@ branches:
   - stable
 install:
     - composer self-update
-    - composer install
+    - composer install -d /PP1
 script: php vendor/codeception/codeception/codecept run
