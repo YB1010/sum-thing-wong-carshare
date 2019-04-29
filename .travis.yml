@@ -18,4 +18,6 @@ before-install:
    - sh build.sh
 install:
   - travis_retry composer self-update
-script: php vendor/codeception/codeception/codecept run
+script: 
+  - PP1/vendor/bin/codecept build
+  - PP1/vendor/bin/codecept run
