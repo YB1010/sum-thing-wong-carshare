@@ -1,4 +1,7 @@
 language: php
+services:
+  - memcached
+  - mysql
 
 php:
     - 5.5
@@ -9,6 +12,7 @@ branches:
   - master
   - stable
 install:
-    - composer self-update
-    - composer install -d=/PP1
+  - travis_retry composer self-update
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - travis_retry composer install $DEFAULT_COMPOSER_FLAGS
 script: php vendor/codeception/codeception/codecept run
