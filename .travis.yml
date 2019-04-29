@@ -19,5 +19,5 @@ before-install:
 install:
   - travis_retry composer self-update
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - travis_retry php composer.phar update
+  - travis_retry composer install
 script: php vendor/codeception/codeception/codecept run
