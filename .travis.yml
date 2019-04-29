@@ -33,7 +33,8 @@ deploy:
   application: Carshare
   deployment_group: Carshare
   region: us-east-1
-  on: *2
+  on:
+    all_branches: true
 before-install:
    - sh build.sh
 install:
