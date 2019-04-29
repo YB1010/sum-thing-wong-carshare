@@ -34,6 +34,7 @@ $data = ArrayHelper::toArray($cars, [
         'carImgUrl'
     ],
 ]);
+$jsonData = json_encode($data);
 
 ?>
 <head>
@@ -118,11 +119,19 @@ $data = ArrayHelper::toArray($cars, [
             /* The max width of the info window. */
             width: 200px;
         }
+        #dataHolder {
+
+        }
     </style>
 </head>
 <body>
 <h1 style="margin-left: -150px">Booking</h1>
+<div id="dataHolder"></div>>
+<script>
+    var jsonObj = <?php echo $jsonData; ?>;
 
+
+</script>
 <div id="map"></div>
 <form action="" method="post">
     <div id="border">

@@ -14,29 +14,8 @@ function Car(id, Lat, Lng, pending, inUse, carName,carImgUrl ) {
 }
 
 //get the cars data from database
-var cars = [
-    {
-        id: 1,
-        latitude: -37.781827,
-        longitude: 145.167733,
-        pending: 'n',
-        inUse: 'n'
-    },
-    {
-        id: 2,
-        latitude: -37.782222,
-        longitude: 145.166666,
-        pending: 'n',
-        inUse: 'n'
-    },
-    {
-        id: 3,
-        latitude: -37.785555,
-        longitude: 145.163463,
-        pending: 'n',
-        inUse: 'n'
-    }
-];
+var cars = jsonObj;
+console.log(jsonObj)
 
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
@@ -56,15 +35,15 @@ function showCarsOnMap(userLatLng,map,carlist,image) {
 
     for (let i = 0; i < carlist.length; i++) {
 
-        if(carlist[i].pendingTime === 'true'||carlist[i].inUse === 'true'){
+        if(carlist[i].pendingTime !== 'off'||carlist[i].inUse !== 'available'){
             continue;
         }
 
 
         let car = new google.maps.Marker({
             position: {
-                lat: carlist[i].latitude,
-                lng: carlist[i].longitude
+                lat: parseFloat(carlist[i].latitude),
+                lng: parseFloat (carlist[i].longitude)
             },
             icon: image,
             map: map
