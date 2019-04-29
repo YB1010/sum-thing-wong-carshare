@@ -19,5 +19,4 @@ before-install:
 install:
   - travis_retry composer self-update
 script: 
-  - PP1/vendor/bin/codecept build
-  - PP1/vendor/bin/codecept run
+  - chmod +x PP1/vendor/bin/phpunit
