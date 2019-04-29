@@ -1,4 +1,7 @@
 language: php
+env:
+  global:
+    - DEFAULT_COMPOSER_FLAGS="--prefer-dist --no-interaction --no-progress --optimize-autoloader"
 services:
   - memcached
   - mysql
@@ -14,5 +17,5 @@ branches:
 install:
   - travis_retry composer self-update
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - travis_retry composer install $DEFAULT_COMPOSER_FLAGS
+  - travis_retry php composer.phar update
 script: php vendor/codeception/codeception/codecept run
