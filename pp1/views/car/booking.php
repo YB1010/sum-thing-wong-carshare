@@ -45,14 +45,14 @@ $jsonData = json_encode($data);
          * element that contains the map. */
         #border {
             margin-left: 50px;
-            width: 300px;
+            width: 400px;
             float: left;
             position: relative;
         }
 
         #son_div {
             margin-top: 20px;
-            width: 800px;
+            width: 400px;
             height: auto;
             float: left;
             border: 1px solid red;
