@@ -20,7 +20,6 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "roave/security-advisories": "dev-master",
-        "2amigos/yii2-google-maps-library": "*",
         "yiisoft/yii2-gii": "~2.0.0"
 
     },
