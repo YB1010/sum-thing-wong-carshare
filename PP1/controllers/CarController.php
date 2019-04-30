@@ -135,8 +135,11 @@ class CarController extends Controller
         $session = Yii::$app->session;
         $session->open();
         $cars = Car::find()->all();
-        $model = new LoginForm();
+//        $model = new LoginForm();
+        $model = new Car();
+
         if (isset($_POST['booking2'])) {
+            $model->updateBookingStatus();
 //            if($session->has('email')) {
 //            if($model->login()){
                 return $this->redirect(['car/car-confirmed']);
