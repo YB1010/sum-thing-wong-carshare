@@ -36,6 +36,7 @@ $data = ArrayHelper::toArray($cars, [
 ]);
 $jsonData = json_encode($data);
 
+var_dump($_SESSION);
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>

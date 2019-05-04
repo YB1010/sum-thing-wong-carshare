@@ -17,7 +17,6 @@ class LoginForm extends Model
     public $password;
     private $_userEmail = false;
     public $rememberMe = true;
-    public $captcha = null;
     public $verifyCode;
 
     /**
@@ -30,7 +29,6 @@ class LoginForm extends Model
             [['email', 'password'], 'required'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            ['verifyCode','captcha'],
         ];
     }
 

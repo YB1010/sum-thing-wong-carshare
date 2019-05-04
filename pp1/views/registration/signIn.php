@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = ['label' => 'registration', 'url' => ['signin']
 $this->params['breadcrumbs'][] = $this->title;
 
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
 use yii\helpers\Html; ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
@@ -30,7 +29,6 @@ use yii\helpers\Html; ?>
 <?= $form->field($model, 'email')->textInput(['placeholder'=>Yii::t('app','Email')]); ?>
 <?= $form->field($model, 'password')->passwordInput(['id'=>'password']); ?>
 
-<?= $form->field($model, 'verifyCode')->widget(Captcha::class) ?>
 <div class="form-group">
     <div class="col-lg-offset-1 col-lg-11">
         <?= HTML::submitButton('Sign in', ['class' => 'btn btn-primary']) ?>

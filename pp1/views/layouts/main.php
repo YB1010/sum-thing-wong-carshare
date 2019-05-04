@@ -45,17 +45,10 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Booking', 'url' =>['/car/booking']],
 //            ['label' => 'Login', 'url' => ['/registration/signup']],
-            Yii::$app->user->isGuest ? (
+            isset(Yii::$app->session["email"]) ? (
+            ['label' => 'LogOut', 'url' => ['/registration/signout']]
+            ): (
             ['label' => 'Login', 'url' => ['/registration/signin']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->email . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
             )
         ],
     ]);
