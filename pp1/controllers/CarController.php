@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use  yii\web\Session;
+
 /**
  * CarController implements the CRUD actions for Car model.
  */
@@ -135,16 +136,10 @@ class CarController extends Controller
         $session = Yii::$app->session;
         $session->open();
         $cars = Car::find()->all();
-//        $model = new LoginForm();
         $model = new Car();
         if (isset($_POST['booking2'])) {
             $model->updateBookingStatus();
-//            if($session->has('email')) {
-//            if($model->login()){
-                return $this->redirect(['car/car-confirmed']);
-//            }else{
-//                return $this->redirect(array('registration/signin'));
-//            }
+            return $this->redirect(['car/car-confirmed']);
         } else {
             return $this->render('booking');
         }
@@ -155,7 +150,12 @@ class CarController extends Controller
     {
         $model = new Car();
         $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => 1]);
-//        return $this->render('confirm-status');
+    }
+
+    public function actionConfirmStatus2()
+    {
+        $model = new Car();
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => 2]);
     }
 
     /*If pending time over and user doesn't click of confirm button
@@ -165,6 +165,12 @@ class CarController extends Controller
     {
         $model = new Car();
         $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 1]);
+    }
+
+    public function actionTimePassed2()
+    {
+        $model = new Car();
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 2]);
     }
 
     public function actionBookingStatus()
@@ -178,4 +184,27 @@ class CarController extends Controller
         return $this->render('car-confirmed');
     }
 
+    public function actionAddCar()
+    {
+        $model = new Car();
+        if($model->load(Yii::$app->request->post())&&$model->addCars()){
+            return $this->redirect(['car/booking']);
+        }else{
+            return $this->render('add-car',['model' => $model]);
+        }
+
+    }
+
+    public function actionDeleteCar()
+    {
+//        $user = Car::find()->where(['id'=>$this->id])->one();
+//        $user->delete();
+        $model = new Car();
+        if($model->load(Yii::$app->request->post())&&$model->deleteCars()){
+            return $this->redirect(['car/booking']);
+        }else{
+            return $this->render('delete-car',['model' => $model]);
+        }
+
+    }
 }

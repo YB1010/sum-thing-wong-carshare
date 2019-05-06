@@ -5,6 +5,7 @@ namespace app\models;
 use dosamigos\google\maps\Size;
 use Yii;
 use yii\db\Exception;
+use yii\db\StaleObjectException;
 
 /**
  * This is the model class for table "car".
@@ -62,6 +63,39 @@ class Car extends \yii\db\ActiveRecord
         } catch (Exception $e) {
             printf("Cannot update data");
         }
+    }
+
+    public function addCars(){
+        if(!$this->validate()){
+            return null;
+        }
+        $model = new Car();
+        $model->id = $this->id;
+        $model->latitude = $this->latitude;
+        $model->longitude = $this->longitude;
+        $model->pendingTime = $this->pendingTime;
+        $model->inUse = $this->inUse;
+        return $model->save(false);
+    }
+
+    public function deleteCars(){
+        if(!$this->validate()){
+            return null;
+        }
+        $model = new Car();
+        $model->id = $this->id;
+        $model->latitude = $this->latitude;
+        $model->longitude = $this->longitude;
+        $model->pendingTime = $this->pendingTime;
+        $model->inUse = $this->inUse;
+        $id = $_POST['deleteId'];
+        $user = Car::find()->where(['id'=>$id])->one();
+        $user->delete();
+
+    }
+    public function test(){
+        $user = Car::find()->where(['id'=>'12'])->one();
+        $user->delete();
     }
 
 }
