@@ -146,10 +146,12 @@ class CarController extends Controller
     }
 
     //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
-    public function actionConfirmStatus()
+    public function actionConfirmStatus($id)
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => 1]);
+        var_dump($id);
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $id]);
+
     }
 
     public function actionConfirmStatus2()

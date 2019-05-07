@@ -55,7 +55,7 @@ if (!isset($_SESSION["email"])) {
             #border {
                 width: 40%;
                 height: 720px;
-                float: right;
+                float: left;
                 border: 3px solid red;
                 position: relative;
                 overflow-y: scroll
@@ -72,7 +72,7 @@ if (!isset($_SESSION["email"])) {
             #map {
                 width: 60%;
                 height: 720px;
-                float: left;
+                float: right;
             }
 
             /* Optional: Makes the sample page fill the window. */
