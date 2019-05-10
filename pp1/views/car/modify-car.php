@@ -17,6 +17,7 @@ use yii\helpers\Html; ?>
 </head>
 <body>
 <?php $form = ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data'],
     'id' => 'Car',
     'layout' => 'horizontal',
     'fieldConfig' => [
@@ -26,12 +27,13 @@ use yii\helpers\Html; ?>
 ]); ?>
 <?= $form->field($model, 'id')->textInput(); ?>
 <?= $form->field($model, 'carName')->textInput(); ?>
-<?= $form->field($model, 'carImgUrl')->textInput(); ?>
+<?= $form->field($model, 'carImgUrl')->fileInput(); ?>
 <?= $form->field($model, 'numOfPassenger')->textInput(); ?>
 
 <div class="form-group">
     <div class="col-lg-offset-1 col-lg-11">
         <?= HTML::submitButton('Update details', ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Upload images', ['upload-images'], ['class' => 'btn btn-success']) ?>
     </div>
 </div>
 <?php $form = ActiveForm::end() ?>

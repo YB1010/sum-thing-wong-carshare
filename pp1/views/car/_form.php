@@ -10,7 +10,9 @@ use yii\widgets\ActiveForm;
 
 <div class="car-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype'=>'multipart/form-data']
+    ]); ?>
 
     <?= $form->field($model, 'latitude')->textarea(['rows' => 6]) ?>
 
@@ -22,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'carName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'carImgUrl')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'carImgUrl')->fileInput() ?>
 
     <?= $form->field($model, 'numOfPassenger')->textInput() ?>
 

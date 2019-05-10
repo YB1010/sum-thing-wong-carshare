@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'pendingTime',
             'inUse',
             'carName',
-            'carImgUrl',
+            'carImgUrl:image',
             'numOfPassenger',
 
             ['class' => 'yii\grid\ActionColumn'],

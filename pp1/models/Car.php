@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\Exception;
-
+use yii\web\UploadedFile;
 /**
  * This is the model class for table "car".
  *
@@ -36,9 +36,10 @@ class Car extends \yii\db\ActiveRecord
             [['latitude', 'longitude', 'pendingTime', 'inUse'], 'required','on'=>['add']],
             [['latitude', 'longitude'], 'string'],
             [['numOfPassenger'], 'integer'],
-            [['id', 'carName', 'carImgUrl','numOfPassenger'], 'required', 'on' => ['change']],
+            [['id', 'carName','numOfPassenger'], 'required', 'on' => ['change']],
             [['pendingTime', 'inUse'], 'string', 'max' => 30],
-            [['carName', 'carImgUrl'], 'string', 'max' => 255],
+            [['carImgUrl'],'file','extensions' => 'jpg,png,gif,jpeg'],
+            [['carName'], 'string', 'max' => 255],
         ];
     }
 
@@ -76,7 +77,12 @@ class Car extends \yii\db\ActiveRecord
         }
         $model = new Car();
         $model->carName = $this->carName;
-        $model->carImgUrl = $this->carImgUrl;
+        $model->carImgUrl = UploadedFile::getInstance($model,'carImgUrl');
+        $img_name = $model->carName.'.'.$model->carImgUrl->extension;
+        $img_path = 'img/'.$img_name;
+        $model->carImgUrl->saveAs($img_path);
+        $model->carImgUrl = $img_name;
+
         $model->numOfPassenger = $this->numOfPassenger;
         $model::updateAll(['carName'=>$model->carName],['id'=>$this->id]);
         $model::updateAll(['carImgUrl'=>$model->carImgUrl],['id'=>$this->id]);
