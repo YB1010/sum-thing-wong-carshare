@@ -186,30 +186,6 @@ class CarController extends Controller
         return $this->render('car-confirmed');
     }
 
-    public function actionAddCar()
-    {
-        $model = new Car();
-        if($model->load(Yii::$app->request->post())&&$model->addCars()){
-            return $this->redirect(['car/booking']);
-        }else{
-            return $this->render('add-car',['model' => $model]);
-        }
-
-    }
-
-    public function actionDeleteCar()
-    {
-//        $user = Car::find()->where(['id'=>$this->id])->one();
-//        $user->delete();
-        $model = new Car();
-        if($model->load(Yii::$app->request->post())&&$model->deleteCars()){
-            return $this->redirect(['car/booking']);
-        }else{
-            return $this->render('delete-car',['model' => $model]);
-        }
-
-    }
-
     public function actionModifyCar(){
         $model = new Car();
         $model->scenario = 'change';
