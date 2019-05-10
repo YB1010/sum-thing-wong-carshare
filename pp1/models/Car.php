@@ -3,6 +3,7 @@
 namespace app\models;
 
 use dosamigos\google\maps\Size;
+use function GuzzleHttp\Promise\exception_for;
 use Yii;
 use yii\db\Exception;
 
@@ -52,12 +53,11 @@ class Car extends \yii\db\ActiveRecord
     }
     public function updateBookingStatus(){
         $command = Yii::$app->db->createCommand();
+        $id= Yii::$app->request->bodyParams["booking2"];
 
-        $dataArray = Car::find()->asArray()->all();
         try {
-//            for($i=0;$i<sizeof($dataArray);$i++){
-                $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
-//            }
+                $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = '.$id)->execute();
+
 
         } catch (Exception $e) {
             printf("Cannot update data");

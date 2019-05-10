@@ -6,6 +6,7 @@ use app\models\LoginForm;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -132,12 +133,9 @@ class CarController extends Controller
      */
     public function actionBooking()
     {
-        $session = Yii::$app->session;
-        $session->open();
-        $cars = Car::find()->all();
-//        $model = new LoginForm();
         $model = new Car();
         if (isset($_POST['booking2'])) {
+            $_SESSION['carID'] = $_POST['booking2'];
             $model->updateBookingStatus();
 //            if($session->has('email')) {
 //            if($model->login()){
@@ -154,8 +152,9 @@ class CarController extends Controller
     public function actionConfirmStatus()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => 1]);
-//        return $this->render('confirm-status');
+        if (isset($_SESSION['carID']))
+            $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
+            return $this->render('confirm-status');
     }
 
     /*If pending time over and user doesn't click of confirm button
@@ -164,7 +163,8 @@ class CarController extends Controller
     public function actionTimePassed()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 1]);
+
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_POST['booking2']]);
     }
 
     public function actionBookingStatus()

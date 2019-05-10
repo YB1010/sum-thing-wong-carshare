@@ -188,7 +188,7 @@ if (!isset($_SESSION["email"])) {
 				 	 ">
                             <span id="count<?php echo $i; ?>"></span>
                             <button class="btn btn-primary" id="startClocking<?php echo $i; ?>" name="booking2"
-                                    style="">
+                                    value=<?php echo $i; ?>>
                                 Book<?php echo $i; ?></button>
                             <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>"
                                    value="<?= Yii::$app->request->csrfToken; ?>"/>
