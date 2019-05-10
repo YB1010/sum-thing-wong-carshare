@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0f13b0d-b469-4532-9966-5517af541d02" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pp1/views/car/add-car.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pp1/views/car/car-confirmed2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pp1/views/car/delete-car.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pp1/views/car/modify-car.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pp1/config/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/config/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pp1/controllers/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/controllers/CarController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/models/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/models/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/models/CarSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/models/CarSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/_search.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/_search.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pp1/views/car/booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/booking.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/confirm-status.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pp1/views/car/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/views/car/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pp1/web/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/pp1/web/js/map.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pp1/controllers/CarController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="145" column="32" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
+            <state relative-caret-position="351">
+              <caret line="139" column="38" lean-forward="true" selection-start-line="139" selection-start-column="38" selection-end-line="141" selection-end-column="58" />
               <folding>
                 <element signature="e#35#60#0#PHP" expanded="true" />
               </folding>
@@ -55,20 +45,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pp1/models/Car.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pp1/web/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1267">
-              <caret line="72" column="70" selection-start-line="72" selection-start-column="70" selection-end-line="72" selection-end-column="70" />
+            <state relative-caret-position="304">
+              <caret line="22" column="163" selection-start-line="22" selection-start-column="163" selection-end-line="22" selection-end-column="163" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pp1/views/car/car-confirmed.php">
+        <entry file="file://$PROJECT_DIR$/pp1/views/car/booking.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" selection-start-column="1" selection-end-column="1" />
+            <state relative-caret-position="456">
+              <caret line="142" column="11" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="11" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,22 +69,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+            <state relative-caret-position="361">
+              <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pp1/config/test.php">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/pp1/models/Car.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
+              <folding>
+                <element signature="e#30#38#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pp1/views/layouts/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
+            <state relative-caret-position="247">
+              <caret line="45" column="57" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="57" />
               <folding>
                 <element signature="e#66#88#0#PHP" expanded="true" />
               </folding>
@@ -100,20 +100,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pp1/requirements.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pp1/views/registration/view.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pp1/config/console.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
               <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pp1/config/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pp1/config/params.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pp1/config/db.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -143,10 +156,12 @@
       <find>logout</find>
       <find>booki</find>
       <find>contain</find>
-      <find>startClocking</find>
       <find>car-confirmed</find>
       <find>stopPending</find>
       <find>confirm-status</find>
+      <find>actionConfirmStatus</find>
+      <find>startClocking</find>
+      <find>startClocking0</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,7 +190,6 @@
         <option value="$PROJECT_DIR$/PP1/web/js/jquery-3.3.1.min.js" />
         <option value="$PROJECT_DIR$/PP1/views/map/rent.php" />
         <option value="$PROJECT_DIR$/PP1/config/db.php" />
-        <option value="$PROJECT_DIR$/pp1/web/js/map.js" />
         <option value="$PROJECT_DIR$/pp1/views/site/login.php" />
         <option value="$PROJECT_DIR$/pp1/vendor/yiisoft/yii2/web/User.php" />
         <option value="$PROJECT_DIR$/pp1/models/Registration.php" />
@@ -194,11 +208,13 @@
         <option value="$PROJECT_DIR$/pp1/assets/AppAsset.php" />
         <option value="$PROJECT_DIR$/pp1/assets/MapAsset.php" />
         <option value="$PROJECT_DIR$/pp1/web/css/site.css" />
-        <option value="$PROJECT_DIR$/pp1/views/car/booking.php" />
         <option value="$PROJECT_DIR$/pp1/config/console.php" />
-        <option value="$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js" />
         <option value="$PROJECT_DIR$/pp1/models/Car.php" />
         <option value="$PROJECT_DIR$/pp1/views/car/car-confirmed.php" />
+        <option value="$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js" />
+        <option value="$PROJECT_DIR$/pp1/views/car/booking.php" />
+        <option value="$PROJECT_DIR$/pp1/config/web.php" />
+        <option value="$PROJECT_DIR$/pp1/web/js/map.js" />
         <option value="$PROJECT_DIR$/pp1/controllers/CarController.php" />
       </list>
     </option>
@@ -279,7 +295,7 @@
       <path value="$PROJECT_DIR$/PP1/vendor/ralouphie/getallheaders" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds">
     <option name="x" value="191" />
     <option name="y" value="239" />
     <option name="width" value="1940" />
@@ -445,18 +461,18 @@
       <workItem from="1554777604349" duration="58000" />
       <workItem from="1556511874968" duration="648000" />
       <workItem from="1556584430606" duration="625000" />
-      <workItem from="1557490504394" duration="1451000" />
+      <workItem from="1557490504394" duration="14851000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130231000" />
+    <option name="totallyTimeSpent" value="143631000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="7" />
+    <frame x="191" y="239" width="1940" height="1044" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13950716" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18670213" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -482,16 +498,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pp1/config/test_db.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pp1/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -707,27 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/views/car/booking.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="193" column="82" selection-start-line="193" selection-start-column="82" selection-end-line="193" selection-end-column="82" />
-          <folding>
-            <element signature="e#4083#4113#0#HTML" expanded="true" />
-            <element signature="e#4140#4171#0#HTML" expanded="true" />
-            <element signature="e#4202#4235#0#HTML" expanded="true" />
-            <element signature="e#4350#4421#0#HTML" expanded="true" />
-            <element signature="e#6754#6822#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/web/js/map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pp1/assets/AppAsset.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -744,33 +729,6 @@
     <entry file="file://$PROJECT_DIR$/pp1/web/index.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/config/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/config/params.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/config/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-112">
-          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/controllers/CarController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="145" column="32" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
-          <folding>
-            <element signature="e#35#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pp1/views/car/confirm-status.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -778,38 +736,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/views/car/car-confirmed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pp1/config/test.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/views/car/car-confirmed.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="556" column="22" selection-start-line="556" selection-start-column="22" selection-end-line="556" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/views/registration/view.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/requirements.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/views/car/car-confirmed2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/models/Car.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+          <folding>
+            <element signature="e#30#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pp1/views/layouts/main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
+        <state relative-caret-position="247">
+          <caret line="45" column="57" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="57" />
           <folding>
             <element signature="e#66#88#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/requirements.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/views/registration/view.php">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/pp1/config/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pp1/config/console.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -818,10 +800,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pp1/models/Car.php">
+    <entry file="file://$PROJECT_DIR$/pp1/config/params.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/web/js/jquery-3.3.1.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1267">
-          <caret line="72" column="70" selection-start-line="72" selection-start-column="70" selection-end-line="72" selection-end-column="70" />
+        <state relative-caret-position="361">
+          <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/config/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/views/car/booking.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="142" column="11" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/web/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="22" column="163" selection-start-line="22" selection-start-column="163" selection-end-line="22" selection-end-column="163" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1/controllers/CarController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="139" column="38" lean-forward="true" selection-start-line="139" selection-start-column="38" selection-end-line="141" selection-end-column="58" />
+          <folding>
+            <element signature="e#35#60#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

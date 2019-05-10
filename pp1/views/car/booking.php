@@ -136,6 +136,11 @@ if (!isset($_SESSION["email"])) {
     <body>
     <script>
         var jsonObj = <?php echo $jsonData; ?>;
+        $.ajaxSetup({
+            data: <?= \yii\helpers\Json::encode([
+                \yii::$app->request->csrfParam => \yii::$app->request->csrfToken,
+            ]) ?>
+        });
     </script>
     <div id="map"></div>
     <form action="" method="post" id="form">

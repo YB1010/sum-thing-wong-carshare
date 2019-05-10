@@ -36,6 +36,7 @@ class CarController extends Controller
      * Lists all Car models.
      * @return mixed
      */
+
     public function actionIndex()
     {
         $searchModel = new CarSearch();
@@ -145,12 +146,13 @@ class CarController extends Controller
     }
 
     //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
-    public function actionConfirmStatus($id)
+    public function actionConfirmStatus()
     {
         $model = new Car();
+        var_dump($_SESSION['carID']);
         if (isset($_SESSION['carID']))
             $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
-            return $this->render('confirm-status');
+        return $this->render('booking');
     }
 
     /*If pending time over and user doesn't click of confirm button
@@ -161,12 +163,6 @@ class CarController extends Controller
         $model = new Car();
 
         $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_POST['booking2']]);
-    }
-
-    public function actionTimePassed2()
-    {
-        $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 2]);
     }
 
     public function actionBookingStatus()

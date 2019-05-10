@@ -15,19 +15,23 @@ function Car(id, Lat, Lng, pending, inUse, carName,carImgUrl ) {
 
 //get the cars data from database
 var cars = jsonObj;
-console.log(jsonObj)
 
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
-        let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
-            '</br><span id="count"></span><button type = "submit" class="btn btn-primary" id="startClocking0" name="booking2">Book</button>';
-        let popupWindow = new google.maps.InfoWindow({
+        var contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
+            '<p><form action="" method="post" id="mapForm"><button class="btn btn-primary" id="startClocking0" name="booking2" value="'+carInfo.id+'">Book</button></form></p>';
+        //var button = '<form action="" method="post" id="mapForm"> <input type="hidden" name="booking2" value="'+carInfo.id+'"><input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>"/><input type="submit" value="Book"></form>';
+        var popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
         carMaker.addListener('click', function() {
             popupWindow.open(map, carMaker);
-            $.getScript('js/jquery-3.3.1.min.js');
+            $(document).ready(function() {
+                $('#startClocking0').click(function () {
+                    $('#mapForm').ajaxSubmit();
+                });
+            });
         });
     });
 }
