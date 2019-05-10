@@ -2,10 +2,8 @@
 
 namespace app\models;
 
-use dosamigos\google\maps\Size;
 use Yii;
 use yii\db\Exception;
-use yii\db\StaleObjectException;
 
 /**
  * This is the model class for table "car".
@@ -15,11 +13,14 @@ use yii\db\StaleObjectException;
  * @property string $longitude
  * @property string $pendingTime
  * @property string $inUse
+ * @property string $carName
+ * @property string $carImgUrl
+ * @property int $numOfPassenger
  */
 class Car extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -27,19 +28,22 @@ class Car extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'required'],
+            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'required','on'=>['add']],
             [['latitude', 'longitude'], 'string'],
+            [['numOfPassenger'], 'integer'],
+            [['id', 'carName', 'carImgUrl','numOfPassenger'], 'required', 'on' => ['change']],
             [['pendingTime', 'inUse'], 'string', 'max' => 30],
+            [['carName', 'carImgUrl'], 'string', 'max' => 255],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -49,53 +53,34 @@ class Car extends \yii\db\ActiveRecord
             'longitude' => 'Longitude',
             'pendingTime' => 'Pending Time',
             'inUse' => 'In Use',
+            'carName' => 'Car Name',
+            'carImgUrl' => 'Car Img Url',
+            'numOfPassenger' => 'Num Of Passenger',
         ];
     }
-    public function updateBookingStatus(){
-        $command = Yii::$app->db->createCommand();
 
+    public function updateBookingStatus()
+    {
+        $command = Yii::$app->db->createCommand();
         $dataArray = Car::find()->asArray()->all();
         try {
-//            for($i=0;$i<sizeof($dataArray);$i++){
-                $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
-//            }
-
+            $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = 1')->execute();
         } catch (Exception $e) {
             printf("Cannot update data");
         }
     }
 
-    public function addCars(){
+    public function updateCarDetails(){
         if(!$this->validate()){
             return null;
         }
         $model = new Car();
-        $model->id = $this->id;
-        $model->latitude = $this->latitude;
-        $model->longitude = $this->longitude;
-        $model->pendingTime = $this->pendingTime;
-        $model->inUse = $this->inUse;
-        return $model->save(false);
+        $model->carName = $this->carName;
+        $model->carImgUrl = $this->carImgUrl;
+        $model->numOfPassenger = $this->numOfPassenger;
+        $model::updateAll(['carName'=>$model->carName],['id'=>$this->id]);
+        $model::updateAll(['carImgUrl'=>$model->carImgUrl],['id'=>$this->id]);
+        $model::updateAll(['numOfPassenger'=>$model->numOfPassenger],['id'=>$this->id]);
+        return true;
     }
-
-    public function deleteCars(){
-        if(!$this->validate()){
-            return null;
-        }
-        $model = new Car();
-        $model->id = $this->id;
-        $model->latitude = $this->latitude;
-        $model->longitude = $this->longitude;
-        $model->pendingTime = $this->pendingTime;
-        $model->inUse = $this->inUse;
-        $id = $_POST['deleteId'];
-        $user = Car::find()->where(['id'=>$id])->one();
-        $user->delete();
-
-    }
-    public function test(){
-        $user = Car::find()->where(['id'=>'12'])->one();
-        $user->delete();
-    }
-
 }

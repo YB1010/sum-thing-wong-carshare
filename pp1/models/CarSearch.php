@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Car;
@@ -13,18 +12,18 @@ use app\models\Car;
 class CarSearch extends Car
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'safe'],
+            [['id', 'numOfPassenger'], 'integer'],
+            [['latitude', 'longitude', 'pendingTime', 'inUse', 'carName', 'carImgUrl'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -60,12 +59,15 @@ class CarSearch extends Car
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'numOfPassenger' => $this->numOfPassenger,
         ]);
 
         $query->andFilterWhere(['like', 'latitude', $this->latitude])
             ->andFilterWhere(['like', 'longitude', $this->longitude])
             ->andFilterWhere(['like', 'pendingTime', $this->pendingTime])
-            ->andFilterWhere(['like', 'inUse', $this->inUse]);
+            ->andFilterWhere(['like', 'inUse', $this->inUse])
+            ->andFilterWhere(['like', 'carName', $this->carName])
+            ->andFilterWhere(['like', 'carImgUrl', $this->carImgUrl]);
 
         return $dataProvider;
     }

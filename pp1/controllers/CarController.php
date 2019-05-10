@@ -209,4 +209,14 @@ class CarController extends Controller
         }
 
     }
+
+    public function actionModifyCar(){
+        $model = new Car();
+        $model->scenario = 'change';
+        if ($model->load(Yii::$app->request->post()) && $model->updateCarDetails()){
+            return $this->redirect(['car/booking']);
+        }else{
+            return $this->render('modify-car',['model'=>$model]);
+        }
+    }
 }

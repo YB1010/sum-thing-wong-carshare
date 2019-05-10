@@ -20,6 +20,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'inUse')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'carName')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'carImgUrl')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'numOfPassenger')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
