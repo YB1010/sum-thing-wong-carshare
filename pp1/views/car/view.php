@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Cars', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="car-view">
 
@@ -33,6 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'longitude:ntext',
             'pendingTime',
             'inUse',
+            'carName',
+            'carImgUrl',
+            'numOfPassenger',
         ],
     ]) ?>
 

@@ -55,7 +55,7 @@ if (!isset($_SESSION["email"])) {
             #border {
                 width: 40%;
                 height: 720px;
-                float: right;
+                float: left;
                 border: 3px solid red;
                 position: relative;
                 overflow-y: scroll
@@ -72,7 +72,7 @@ if (!isset($_SESSION["email"])) {
             #map {
                 width: 60%;
                 height: 720px;
-                float: left;
+                float: right;
             }
 
             /* Optional: Makes the sample page fill the window. */
@@ -138,7 +138,7 @@ if (!isset($_SESSION["email"])) {
         var jsonObj = <?php echo $jsonData; ?>;
     </script>
     <div id="map"></div>
-    <form action="" method="post">
+    <form action="" method="post" id="form">
         <div id="border">
             <?php
             for ($i = 0; $i < sizeof($data); $i++) {
@@ -160,20 +160,29 @@ if (!isset($_SESSION["email"])) {
                         </div>
                         <div style="width:300px;height:50px;float:left;
 				 	 "><font size="4px" color="#26DB3C" id="tx<?php echo $i; ?>">
+                                <script>
+                                    console.log('#startClocking<?php echo $data[$i]['id']; ?>');
+                                    console.log(document.getElementById('startClocking<?php echo $data[$i]['id']; ?>'));
+                                </script>
 
                                 <?php if ($data[$i]['pendingTime'] !== "off" || $data[$i]['inUse'] !== "available") {
                                     echo "Unlimited";
-                                } else {
-                                    ?>
+                                    //TODO DISABLE BUTTON?>
+                                    <script>
+
+                                        document.getElementById('startClocking<?php echo $i; ?>').style.visibility="hidden";
+                                    </script>
+                                <?php } else {
+                                ?>
                                     <script>
                                         if (navigator.geolocation) {
                                             navigator.geolocation.getCurrentPosition(function (position) {
-                                                var lat = position.coords.latitude;
-                                                var lng = position.coords.longitude;
+                                                let lat = position.coords.latitude;
+                                                let lng = position.coords.longitude;
                                                 console.log(lat);
-                                                var p1 = new google.maps.LatLng(lat, lng);
-                                                var p2 = new google.maps.LatLng(<?php echo $data[$i]['latitude']; ?>, <?php echo $data[$i]['longitude']; ?>);
-                                                var km = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+                                                let p1 = new google.maps.LatLng(lat, lng);
+                                                let p2 = new google.maps.LatLng(<?php echo $data[$i]['latitude']; ?>, <?php echo $data[$i]['longitude']; ?>);
+                                                let km = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
                                                 document.getElementById('tx<?php echo $i; ?>').innerHTML = km + " km per rental";
                                             });
 
@@ -187,9 +196,9 @@ if (!isset($_SESSION["email"])) {
                         <div style="width:300px;height:50px;float:left;text-align: right
 				 	 ">
                             <span id="count<?php echo $i; ?>"></span>
-                            <button class="btn btn-primary" id="startClocking<?php echo $i; ?>" name="booking2"
+                            <button class="btn btn-primary" id="startClocking<?php echo $data[$i]['id'] ?>" name="booking2"
                                     style="">
-                                Book<?php echo $i; ?></button>
+                                Book<?php echo $data[$i]['id']; ?></button>
                             <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>"
                                    value="<?= Yii::$app->request->csrfToken; ?>"/>
                         </div>
