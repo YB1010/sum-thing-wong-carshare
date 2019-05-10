@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use  yii\web\Session;
+
 /**
  * CarController implements the CRUD actions for Car model.
  */
@@ -137,19 +138,14 @@ class CarController extends Controller
         if (isset($_POST['booking2'])) {
             $_SESSION['carID'] = $_POST['booking2'];
             $model->updateBookingStatus();
-//            if($session->has('email')) {
-//            if($model->login()){
-                return $this->redirect(['car/car-confirmed']);
-//            }else{
-//                return $this->redirect(array('registration/signin'));
-//            }
+            return $this->redirect(['car/car-confirmed']);
         } else {
             return $this->render('booking');
         }
     }
 
     //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
-    public function actionConfirmStatus()
+    public function actionConfirmStatus($id)
     {
         $model = new Car();
         if (isset($_SESSION['carID']))
@@ -167,6 +163,12 @@ class CarController extends Controller
         $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_POST['booking2']]);
     }
 
+    public function actionTimePassed2()
+    {
+        $model = new Car();
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 2]);
+    }
+
     public function actionBookingStatus()
     {
         $model = new Car();
@@ -178,4 +180,13 @@ class CarController extends Controller
         return $this->render('car-confirmed');
     }
 
+    public function actionModifyCar(){
+        $model = new Car();
+        $model->scenario = 'change';
+        if ($model->load(Yii::$app->request->post()) && $model->updateCarDetails()){
+            return $this->redirect(['car/booking']);
+        }else{
+            return $this->render('modify-car',['model'=>$model]);
+        }
+    }
 }

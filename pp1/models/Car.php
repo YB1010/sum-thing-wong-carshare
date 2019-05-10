@@ -2,11 +2,9 @@
 
 namespace app\models;
 
-use dosamigos\google\maps\Size;
-use function GuzzleHttp\Promise\exception_for;
 use Yii;
 use yii\db\Exception;
-
+use yii\web\UploadedFile;
 /**
  * This is the model class for table "car".
  *
@@ -15,11 +13,14 @@ use yii\db\Exception;
  * @property string $longitude
  * @property string $pendingTime
  * @property string $inUse
+ * @property string $carName
+ * @property string $carImgUrl
+ * @property int $numOfPassenger
  */
 class Car extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -27,19 +28,23 @@ class Car extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'required'],
+            [['latitude', 'longitude', 'pendingTime', 'inUse'], 'required','on'=>['add']],
             [['latitude', 'longitude'], 'string'],
+            [['numOfPassenger'], 'integer'],
+            [['id', 'carName','numOfPassenger'], 'required', 'on' => ['change']],
             [['pendingTime', 'inUse'], 'string', 'max' => 30],
+            [['carImgUrl'],'file','extensions' => 'jpg,png,gif,jpeg'],
+            [['carName'], 'string', 'max' => 255],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -49,6 +54,9 @@ class Car extends \yii\db\ActiveRecord
             'longitude' => 'Longitude',
             'pendingTime' => 'Pending Time',
             'inUse' => 'In Use',
+            'carName' => 'Car Name',
+            'carImgUrl' => 'Car Img Url',
+            'numOfPassenger' => 'Num Of Passenger',
         ];
     }
     public function updateBookingStatus(){
@@ -64,4 +72,22 @@ class Car extends \yii\db\ActiveRecord
         }
     }
 
+    public function updateCarDetails(){
+        if(!$this->validate()){
+            return null;
+        }
+        $model = new Car();
+        $model->carName = $this->carName;
+        $model->carImgUrl = UploadedFile::getInstance($model,'carImgUrl');
+        $img_name = $model->carName.'.'.$model->carImgUrl->extension;
+        $img_path = 'img/'.$img_name;
+        $model->carImgUrl->saveAs($img_path);
+        $model->carImgUrl = $img_name;
+
+        $model->numOfPassenger = $this->numOfPassenger;
+        $model::updateAll(['carName'=>$model->carName],['id'=>$this->id]);
+        $model::updateAll(['carImgUrl'=>$model->carImgUrl],['id'=>$this->id]);
+        $model::updateAll(['numOfPassenger'=>$model->numOfPassenger],['id'=>$this->id]);
+        return true;
+    }
 }
