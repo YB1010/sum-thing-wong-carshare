@@ -185,4 +185,8 @@ class CarController extends Controller
             return $this->render('modify-car',['model'=>$model]);
         }
     }
+    public function actionGetCars(){
+        $cars = Car::find()->orderBy('id')->all();
+        return $this->asJson($cars);
+    }
 }

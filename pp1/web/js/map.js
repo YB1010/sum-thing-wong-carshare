@@ -16,6 +16,20 @@ function Car(id, Lat, Lng, pending, inUse, carName,carImgUrl ) {
 //get the cars data from database
 var cars = jsonObj;
 
+function getCars(){
+    var t = $.getJSON(
+        {
+            type: 'POST',
+            dataType: 'json',
+            url: 'index.php?r=car/get-cars',
+            complete: function(data) {
+                // cars = data;
+                cars = data.responseJSON;
+            }
+        }
+    );
+
+}
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
@@ -31,7 +45,10 @@ function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
         });
     });
 }
-function showCarsOnMap(userLatLng,map,carlist,image) {
+var image;
+var userLatLng;
+var carsMakers = [];
+function makeCarMakers(userLatLng, map, carlist, image) {
 
     for (let i = 1; i <= carlist.length; i++) {
 
@@ -46,11 +63,19 @@ function showCarsOnMap(userLatLng,map,carlist,image) {
                 lng: parseFloat (carlist[i-1].longitude)
             },
             icon: image,
-            map: map
+            map:map
         });
         displayPopupWindows(car,carlist[i-1],map,userLatLng);
+        carsMakers.push(car);
     }
 
+}
+function renewMakers() {
+    let carsIndex;
+    for(carsIndex = 0; carsIndex< carsMakers.length;++carsIndex){
+        carsMakers.pop().setMap(null);
+    }
+    makeCarMakers(userLatLng, map, cars, image);
 }
 
 function initMap() {
@@ -75,13 +100,13 @@ function initMap() {
             });
             map.setCenter(pos);
 //http://pngimg.com/uploads/taxi/taxi_PNG7.png
-            var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
-            let userLatLng = {
+            userLatLng = {
                 latitude: user.getPosition().lat(),
                 longitude: user.getPosition().lng()
             };
-            showCarsOnMap(userLatLng, map, cars, image);
+            makeCarMakers(userLatLng, map, cars, image);
 
 
         }, function() {
@@ -92,7 +117,10 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-
+window.setInterval(function(){
+    getCars();
+    renewMakers();
+}, 20000);
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
