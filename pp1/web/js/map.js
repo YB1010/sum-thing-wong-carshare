@@ -20,39 +20,35 @@ function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
         var contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
-            '<p><form action="" method="post" id="mapForm"><button class="btn btn-primary" id="startClocking0" name="booking2" value="'+carInfo.id+'">Book</button></form></p>';
+            '<p><button class="btn btn-primary" id="startClocking0" name="booking2" value="'+carInfo.id+'">Book</button></p>';
         //var button = '<form action="" method="post" id="mapForm"> <input type="hidden" name="booking2" value="'+carInfo.id+'"><input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>"/><input type="submit" value="Book"></form>';
         var popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
         carMaker.addListener('click', function() {
             popupWindow.open(map, carMaker);
-            $(document).ready(function() {
-                $('#startClocking0').click(function () {
-                    $('#mapForm').ajaxSubmit();
-                });
-            });
+
         });
     });
 }
 function showCarsOnMap(userLatLng,map,carlist,image) {
 
-    for (let i = 0; i < carlist.length; i++) {
+    for (let i = 1; i <= carlist.length; i++) {
 
-        if(carlist[i].pendingTime !== 'off'||carlist[i].inUse !== 'available'){
+        if(carlist[i-1].pendingTime !== 'off'||carlist[i-1].inUse !== 'available'){
             continue;
         }
 
 
         let car = new google.maps.Marker({
             position: {
-                lat: parseFloat(carlist[i].latitude),
-                lng: parseFloat (carlist[i].longitude)
+                lat: parseFloat(carlist[i-1].latitude),
+                lng: parseFloat (carlist[i-1].longitude)
             },
             icon: image,
             map: map
         });
-        displayPopupWindows(car,carlist[i],map,userLatLng);
+        displayPopupWindows(car,carlist[i-1],map,userLatLng);
     }
 
 }

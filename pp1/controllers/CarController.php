@@ -149,10 +149,10 @@ class CarController extends Controller
     public function actionConfirmStatus()
     {
         $model = new Car();
-        var_dump($_SESSION['carID']);
-        if (isset($_SESSION['carID']))
+        if (isset($_POST['payed'])&&isset($_SESSION['carID'])&&$_POST['payed']=='true')
             $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
-        return $this->render('booking');
+        unset($_SESSION['carID']);
+        return $this->redirect(['car/booking']);
     }
 
     /*If pending time over and user doesn't click of confirm button
@@ -162,7 +162,7 @@ class CarController extends Controller
     {
         $model = new Car();
 
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_POST['booking2']]);
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_SESSION['carID']]);
     }
 
     public function actionBookingStatus()
