@@ -21,11 +21,9 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'bootstrap.min.css'
     ];
     public $js = [
         'js/bootstrap.min.js',
-        'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
         'js/jquery-3.3.1.min.js'
     ];
     public $depends = [
