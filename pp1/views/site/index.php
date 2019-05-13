@@ -9,7 +9,6 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron" style="width: 100%;text-align: center">
         <h1><font color="white">Sum-thing-wrong's SOCAR</font></h1></h1>
-        <p ></p>
     </div>
 
     <div class="body-content"  style="text-align: center">
