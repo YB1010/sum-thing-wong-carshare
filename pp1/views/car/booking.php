@@ -157,7 +157,7 @@ $data = ArrayHelper::toArray($cars, [
                             jsdata[i]['peoples'] = 4;
                         }
                     }
-                    console.log(123);
+                    console.log(jsdata);
                     for(i = 0; i < jsdata.length; i++){
                         for(j=i+1;j<jsdata.length;j++){
                             if(eval(jsdata[i]['km'])>eval(jsdata[j]['km'])){
@@ -172,7 +172,7 @@ $data = ArrayHelper::toArray($cars, [
                     function get() {
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
-                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" >' +
+                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" class="panel-body">' +
                                 '<div style="float:left;width:300px;" >' +
                                 '<div ><img id="'+"img"+i+'" style="width:350px;height:200px;margin-top: 10px" src="'+"img/"+jsdata[i]['carImgUrl']+'"></div>' +
                                 '<div style="width:350px;height:40px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div></div>' +
@@ -180,7 +180,6 @@ $data = ArrayHelper::toArray($cars, [
                                 '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
                                 '</div>';
                             html+=div;
-                            console.log(html);
                         }
                         root.innerHTML = html;
                     }
