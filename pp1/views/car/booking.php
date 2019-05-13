@@ -115,13 +115,13 @@ $data = ArrayHelper::toArray($cars, [
 
 <h1 style="margin-left: -150px">Booking</h1>
 <script>
-    console.log(1);
+
 </script>
 <div id="map"></div>
 <script>
-    console.log(1);
+
 </script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script>
         jsdata =[];
     </script>
@@ -157,6 +157,7 @@ $data = ArrayHelper::toArray($cars, [
                             jsdata[i]['peoples'] = 4;
                         }
                     }
+                    console.log(123);
                     for(i = 0; i < jsdata.length; i++){
                         for(j=i+1;j<jsdata.length;j++){
                             if(eval(jsdata[i]['km'])>eval(jsdata[j]['km'])){
