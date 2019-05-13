@@ -18,7 +18,15 @@ use yii\helpers\Html; ?>
     <title><?= HTML::encode($this->title) ?></title>
 </head>
 <body>
-<?php $form = ActiveForm::begin([
+<?php if(Yii::$app->session->hasFlash('error')):?>
+    <div class="info">
+        <?php Yii::$app->session->getFlash('error'); ?>
+    </div>
+<?php endif; ?>
+<?php
+
+
+    $form = ActiveForm::begin([
     'id' => 'Registration',
     'layout' => 'horizontal',
     'fieldConfig' => [

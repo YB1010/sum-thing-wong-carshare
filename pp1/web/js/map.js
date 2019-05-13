@@ -3,19 +3,23 @@
 /*jshint esversion: 6 */
 var map, infoWindow;
 
-function Car(id, Lat, Lng, pending, inUse, carName,carImgUrl ) {
-    this.id = id;
-    this.Lat = Lat;
-    this.Lng = Lng;
-    this.pending = pending;
-    this.inUse = inUse;
-    this.carName = carName;
-    this.carImgUrl = carImgUrl;
-}
-
 //get the cars data from database
 var cars = jsonObj;
 
+function getCars(){
+    var t = $.getJSON(
+        {
+            type: 'POST',
+            dataType: 'json',
+            url: 'index.php?r=car/get-cars',
+            complete: function(data) {
+                // cars = data;
+                cars = data.responseJSON;
+            }
+        }
+    );
+
+}
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
@@ -31,14 +35,14 @@ function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
         });
     });
 }
-function showCarsOnMap(userLatLng,map,carlist,image) {
+var image;
+var userLatLng;
+var carsMakers = [];
+
+//only makeCarMakers Once. Because car assets have stable quality.
+function makeCarMakers(userLatLng, map, carlist, image) {
 
     for (let i = 1; i <= carlist.length; i++) {
-
-        if(carlist[i-1].pendingTime !== 'off'||carlist[i-1].inUse !== 'available'){
-            continue;
-        }
-
 
         let car = new google.maps.Marker({
             position: {
@@ -46,11 +50,24 @@ function showCarsOnMap(userLatLng,map,carlist,image) {
                 lng: parseFloat (carlist[i-1].longitude)
             },
             icon: image,
-            map: map
+            //map: map
         });
         displayPopupWindows(car,carlist[i-1],map,userLatLng);
+        carsMakers[parseInt(carlist[i-1].id)]=car;
     }
 
+}
+
+function putCarMakers() {
+    for (let i = 1; i <= cars.length; i++) {
+        if (cars[i-1].inUse === 'available' && cars[i-1].pendingTime === 'off'){
+            carsMakers[i].setMap(map);
+        }
+        else {
+            carsMakers[i].setMap(null);
+        }
+    }
+    console.log(carsMakers.length);
 }
 
 function initMap() {
@@ -75,13 +92,14 @@ function initMap() {
             });
             map.setCenter(pos);
 //http://pngimg.com/uploads/taxi/taxi_PNG7.png
-            var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
-            let userLatLng = {
+            userLatLng = {
                 latitude: user.getPosition().lat(),
                 longitude: user.getPosition().lng()
             };
-            showCarsOnMap(userLatLng, map, cars, image);
+            makeCarMakers(userLatLng, map, cars, image);
+            putCarMakers();
 
 
         }, function() {
@@ -92,7 +110,10 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-
+window.setInterval(function(){
+    getCars();
+    putCarMakers();
+}, 5000);
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?

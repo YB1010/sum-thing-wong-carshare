@@ -34,12 +34,6 @@ $data = ArrayHelper::toArray($cars, [
 ]);
 $jsonData = json_encode($data);
 
-if (!isset($_SESSION["email"])) {
-    ?>
-    Please <a href="index.php?r=registration%2Fsignin">login</a> first!
-
-    <?php
-} else {
 
     MapAsset::register($this);
     GoogleMapCallback::register($this);
@@ -213,5 +207,3 @@ if (!isset($_SESSION["email"])) {
 
     </body>
     </html>
-<?php }
-?>
