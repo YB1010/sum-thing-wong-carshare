@@ -110,13 +110,12 @@ GoogleMapCallback::register($this);
             width: 200px;
         }
     </style>
-    <link src="css/bootstrap.min.css" />
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-
 </head>
 <body>
 <script>
     var jsonObj = <?php echo $jsonData; ?>;
+
     $.ajaxSetup({
         data: <?= \yii\helpers\Json::encode([
             \yii::$app->request->csrfParam => \yii::$app->request->csrfToken,
@@ -124,7 +123,7 @@ GoogleMapCallback::register($this);
     });
 </script>
 
-<h1 style="margin-left: -150px">Booking</h1>
+<h1 style="margin-left: -150px">Book</h1>
 <div id="map"></div>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script>
