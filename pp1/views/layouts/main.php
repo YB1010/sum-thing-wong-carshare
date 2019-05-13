@@ -36,6 +36,7 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    //  ['label' => 'rentTest', 'url' =>['/map/rent']],
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
@@ -43,6 +44,7 @@ AppAsset::register($this);
             ['label' => 'Rent', 'url' => ['/site/rent']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Booking', 'url' =>['/car/booking']],
+//            ['label' => 'Login', 'url' => ['/registration/signup']],
             isset(Yii::$app->session["email"]) ? (
             ['label' => 'LogOut', 'url' => ['/registration/signout']]
             ): (
@@ -63,13 +65,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
