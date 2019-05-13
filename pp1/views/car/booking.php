@@ -44,12 +44,6 @@ GoogleMapCallback::register($this);
             width:720px;
             float: left;
             position: relative;
-            /*width: 40%;*/
-            /*height: 720px;*/
-            /*float: left;*/
-            /*border: 3px solid red;*/
-            /*position: relative;*/
-            /*overflow-y: scroll*/
         }
         #son_div{
             margin-top: 20px;
@@ -65,9 +59,6 @@ GoogleMapCallback::register($this);
             height: 512px;
             overflow: hidden;
             float: left;
-            /*width: 60%;*/
-            /*height: 720px;*/
-            /*float: right;*/
         }
         /* Optional: Makes the sample page fill the window. */
         /* The popup bubble styling. */
@@ -132,13 +123,7 @@ GoogleMapCallback::register($this);
         ]) ?>
     });
 </script>
-<form action="" method="post" id="form">
-    <div id="map">
-        <input name="<?= Yii::$app->request->csrfParam; ?>" type="hidden"
-               value="<?= Yii::$app->request->csrfToken; ?>"/>
-    </div>
 
-</form>>
 <h1 style="margin-left: -150px">Booking</h1>
 <div id="map"></div>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
@@ -191,12 +176,12 @@ GoogleMapCallback::register($this);
                     function get() {
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
-                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" class="panel-body">' +
+                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" >' +
                                 '<div style="float:left;width:300px;" >' +
                                 '<div ><img id="'+"img"+i+'" style="width:350px;height:200px;margin-top: 10px" src="'+"img/"+jsdata[i]['carImgUrl']+'"></div>' +
                                 '<div style="width:350px;height:40px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div></div>' +
                                 '<div style="float:left;width:250px;text-align: center|left"><div id="'+"people"+i+'" style="height:50px;margin-top: 80px">'+"peoples :"+jsdata[i]['peoples']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
-                                '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking1" style="width: 150px;margin-top: 110px">Book</button> </div>' +
+                                '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
                                 '</div>';
                             html+=div;
                             console.log(html);
@@ -210,7 +195,7 @@ GoogleMapCallback::register($this);
     </script>
 
 
-<form action="" method="post">
+<form action="" method="post" id="form">
 
     <div id="border"   >
 <!--        <div  style="border:1px solid gray;" class="panel-body">-->
