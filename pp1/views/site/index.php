@@ -4,7 +4,7 @@
 
 $this->title = 'My Yii Application';
 ?>
-<body style="background: url('img/bg.jpg');background-attachment: fixed;background-repeat:no-repeat;text-align: center;">
+<body style="background: url('img/bg.jpg');background-size：100% 100%;background-attachment: fixed;background-repeat:no-repeat;text-align: center;width: 100%;height: 100%">
 <div class="site-index" >
 
     <div class="jumbotron" style="width: 100%;text-align: center">
@@ -14,12 +14,11 @@ $this->title = 'My Yii Application';
 
     <div class="body-content"  style="text-align: center">
 
-        <div class="row">
-            <div class="col-lg-4" >
+        <div class="row" style="text-align: center;width: 100%">
+            <div class="col-lg-4" style="text-align: center;width: 100%">
                 <h1><font color="white">Enjoy the best CAR Renting Experience</font></h1>
                 <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com" style="width: 250px">EVER</a></p>
             </div>
-
         </div>
 
     </div>
