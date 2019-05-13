@@ -6,6 +6,7 @@ use app\models\LoginForm;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,6 +36,7 @@ class CarController extends Controller
      * Lists all Car models.
      * @return mixed
      */
+
     public function actionIndex()
     {
         $searchModel = new CarSearch();
@@ -133,14 +135,16 @@ class CarController extends Controller
      */
     public function actionBooking()
     {
-        $session = Yii::$app->session;
-        $session->open();
-        $cars = Car::find()->all();
         $model = new Car();
-        if (isset($_POST['booking2'])) {
+        if (isset($_POST['booking2']) && isset($_SESSION['email'])) {
+            $_SESSION['carID'] = $_POST['booking2'];
             $model->updateBookingStatus();
             return $this->redirect(['car/car-confirmed']);
-        } else {
+        }elseif(isset($_POST['booking2'])){
+            Yii::$app->session->setFlash('error', "Please Login First!!");
+            return $this->redirect('index.php?r=registration/signin');
+        }
+        else {
             return $this->render('booking');
         }
     }
@@ -149,15 +153,10 @@ class CarController extends Controller
     public function actionConfirmStatus($id)
     {
         $model = new Car();
-        var_dump($id);
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $id]);
-
-    }
-
-    public function actionConfirmStatus2()
-    {
-        $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => 2]);
+        if (isset($_POST['payed'])&&isset($_SESSION['carID'])&&$_POST['payed']=='true')
+            $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
+        unset($_SESSION['carID']);
+        return $this->redirect(['car/booking']);
     }
 
     /*If pending time over and user doesn't click of confirm button
@@ -166,7 +165,8 @@ class CarController extends Controller
     public function actionTimePassed()
     {
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => 1]);
+
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_SESSION['carID']]);
     }
 
     public function actionTimePassed2()
@@ -186,30 +186,6 @@ class CarController extends Controller
         return $this->render('car-confirmed');
     }
 
-    public function actionAddCar()
-    {
-        $model = new Car();
-        if($model->load(Yii::$app->request->post())&&$model->addCars()){
-            return $this->redirect(['car/booking']);
-        }else{
-            return $this->render('add-car',['model' => $model]);
-        }
-
-    }
-
-    public function actionDeleteCar()
-    {
-//        $user = Car::find()->where(['id'=>$this->id])->one();
-//        $user->delete();
-        $model = new Car();
-        if($model->load(Yii::$app->request->post())&&$model->deleteCars()){
-            return $this->redirect(['car/booking']);
-        }else{
-            return $this->render('delete-car',['model' => $model]);
-        }
-
-    }
-
     public function actionModifyCar(){
         $model = new Car();
         $model->scenario = 'change';
@@ -218,5 +194,9 @@ class CarController extends Controller
         }else{
             return $this->render('modify-car',['model'=>$model]);
         }
+    }
+    public function actionGetCars(){
+        $cars = Car::find()->orderBy('id')->all();
+        return $this->asJson($cars);
     }
 }

@@ -34,12 +34,6 @@ $data = ArrayHelper::toArray($cars, [
 ]);
 $jsonData = json_encode($data);
 
-if (!isset($_SESSION["email"])) {
-    ?>
-    Please <a href="index.php?r=registration%2Fsignin">login</a> first!
-
-    <?php
-} else {
 
     MapAsset::register($this);
     GoogleMapCallback::register($this);
@@ -136,44 +130,45 @@ if (!isset($_SESSION["email"])) {
     <body>
     <script>
         var jsonObj = <?php echo $jsonData; ?>;
+        $.ajaxSetup({
+            data: <?= \yii\helpers\Json::encode([
+                \yii::$app->request->csrfParam => \yii::$app->request->csrfToken,
+            ]) ?>
+        });
     </script>
-    <div id="map"></div>
+    <form action="" method="post" id="form">
+        <div id="map">
+            <input name="<?= Yii::$app->request->csrfParam; ?>" type="hidden"
+                   value="<?= Yii::$app->request->csrfToken; ?>"/>
+        </div>
+
+    </form>>
     <form action="" method="post" id="form">
         <div id="border">
             <?php
-            for ($i = 0; $i < sizeof($data); $i++) {
-                ?>
-                <div id="son_div" style="border:1px solid gray;">
-                    <div style="float:left;width:450px;">
-                        <div style="width:450px;height:180px;"><img src="img/<?php echo $data[$i]['carImgUrl']; ?>">
-                        </div>
-                        <div style="width:450px;height:40px;font-size:25px;
-				 	 margin-left: 20%"><b><?php echo $data[$i]['carName']; ?></b>&nbsp&nbsp <font size="1px"
+            for ($i = 1; $i <= sizeof($data); $i++) {
+                if ($data[$i-1]['inUse']!=='available'){
+                    continue;
+                }
+                else {
+                    ?>
+                    <div id="son_div" style="border:1px solid gray;">
+                        <div style="float:left;width:450px;">
+                            <div style="width:450px;height:180px;"><img src="img/<?php echo $data[$i-1]['carImgUrl']; ?>">
+                            </div>
+                            <div style="width:450px;height:40px;font-size:25px;
+				 	 margin-left: 20%"><b><?php echo $data[$i-1]['carName']; ?></b>&nbsp&nbsp <font size="1px"
                                                                                                    color="gray">or
-                                Similar</font></div>
-                    </div>
-                    <div style="float:left;width:300px;margin-top:35px;">
-                        <div style="width:300px;height:80px;float:left;
-				 	 "><img src="tu.png" style="width: 30px;height: 40px">
-                            &nbsp&nbsp&nbsp
-                            <font color="gray" size="5px">Mileage</font>
+                                    Similar</font></div>
                         </div>
-                        <div style="width:300px;height:50px;float:left;
+                        <div style="float:left;width:300px;margin-top:35px;">
+                            <div style="width:300px;height:80px;float:left;
+				 	 "><img src="tu.png" style="width: 30px;height: 40px">
+                                &nbsp&nbsp&nbsp
+                                <font color="gray" size="5px">Mileage</font>
+                            </div>
+                            <div style="width:300px;height:50px;float:left;
 				 	 "><font size="4px" color="#26DB3C" id="tx<?php echo $i; ?>">
-                                <script>
-                                    console.log('#startClocking<?php echo $data[$i]['id']; ?>');
-                                    console.log(document.getElementById('startClocking<?php echo $data[$i]['id']; ?>'));
-                                </script>
-
-                                <?php if ($data[$i]['pendingTime'] !== "off" || $data[$i]['inUse'] !== "available") {
-                                    echo "Unlimited";
-                                    //TODO DISABLE BUTTON?>
-                                    <script>
-
-                                        document.getElementById('startClocking<?php echo $i; ?>').style.visibility="hidden";
-                                    </script>
-                                <?php } else {
-                                ?>
                                     <script>
                                         if (navigator.geolocation) {
                                             navigator.geolocation.getCurrentPosition(function (position) {
@@ -181,31 +176,30 @@ if (!isset($_SESSION["email"])) {
                                                 let lng = position.coords.longitude;
                                                 console.log(lat);
                                                 let p1 = new google.maps.LatLng(lat, lng);
-                                                let p2 = new google.maps.LatLng(<?php echo $data[$i]['latitude']; ?>, <?php echo $data[$i]['longitude']; ?>);
+                                                let p2 = new google.maps.LatLng(<?php echo $data[$i-1]['latitude']; ?>, <?php echo $data[$i-1]['longitude']; ?>);
                                                 let km = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
                                                 document.getElementById('tx<?php echo $i; ?>').innerHTML = km + " km per rental";
                                             });
 
                                         }
                                     </script>
-                                    <?php
-                                }
-                                ?>
-                            </font>
-                        </div>
-                        <div style="width:300px;height:50px;float:left;text-align: right
-				 	 ">
-                            <span id="count<?php echo $i; ?>"></span>
-                            <button class="btn btn-primary" id="startClocking<?php echo $data[$i]['id'] ?>" name="booking2"
-                                    style="">
-                                Book<?php echo $data[$i]['id']; ?></button>
-                            <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>"
-                                   value="<?= Yii::$app->request->csrfToken; ?>"/>
-                        </div>
-                    </div>
 
-                </div>
-                <?php
+                                </font>
+                            </div>
+                            <div style="width:300px;height:50px;float:left;text-align: right
+				 	 ">
+                                <span id="count<?php echo $i; ?>"></span>
+                                <button class="btn btn-primary" id="startClocking<?php echo $i; ?>" name="booking2"
+                                        value=<?php echo $i; ?>>
+                                    Book<?php echo $i; ?></button>
+                                <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>"
+                                       value="<?= Yii::$app->request->csrfToken; ?>"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <?php
+                }
             }
             ?>
         </div>
@@ -213,5 +207,3 @@ if (!isset($_SESSION["email"])) {
 
     </body>
     </html>
-<?php }
-?>

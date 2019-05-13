@@ -3,54 +3,71 @@
 /*jshint esversion: 6 */
 var map, infoWindow;
 
-function Car(id, Lat, Lng, pending, inUse, carName,carImgUrl ) {
-    this.id = id;
-    this.Lat = Lat;
-    this.Lng = Lng;
-    this.pending = pending;
-    this.inUse = inUse;
-    this.carName = carName;
-    this.carImgUrl = carImgUrl;
-}
-
 //get the cars data from database
 var cars = jsonObj;
-console.log(jsonObj)
 
+function getCars(){
+    var t = $.getJSON(
+        {
+            type: 'POST',
+            dataType: 'json',
+            url: 'index.php?r=car/get-cars',
+            complete: function(data) {
+                // cars = data;
+                cars = data.responseJSON;
+            }
+        }
+    );
+
+}
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
-        let contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
-            '</br><span id="count"></span><button type = "submit" class="btn btn-primary" id="startClocking0" name="booking2">Book</button>';
-        let popupWindow = new google.maps.InfoWindow({
+        var contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
+            '<p><button class="btn btn-primary" id="startClocking0" name="booking2" value="'+carInfo.id+'">Book</button></p>';
+        //var button = '<form action="" method="post" id="mapForm"> <input type="hidden" name="booking2" value="'+carInfo.id+'"><input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>"/><input type="submit" value="Book"></form>';
+        var popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
         carMaker.addListener('click', function() {
             popupWindow.open(map, carMaker);
-            $.getScript('js/jquery-3.3.1.min.js');
+
         });
     });
 }
-function showCarsOnMap(userLatLng,map,carlist,image) {
+var image;
+var userLatLng;
+var carsMakers = [];
 
-    for (let i = 0; i < carlist.length; i++) {
+//only makeCarMakers Once. Because car assets have stable quality.
+function makeCarMakers(userLatLng, map, carlist, image) {
 
-        if(carlist[i].pendingTime !== 'off'||carlist[i].inUse !== 'available'){
-            continue;
-        }
-
+    for (let i = 1; i <= carlist.length; i++) {
 
         let car = new google.maps.Marker({
             position: {
-                lat: parseFloat(carlist[i].latitude),
-                lng: parseFloat (carlist[i].longitude)
+                lat: parseFloat(carlist[i-1].latitude),
+                lng: parseFloat (carlist[i-1].longitude)
             },
             icon: image,
-            map: map
+            //map: map
         });
-        displayPopupWindows(car,carlist[i],map,userLatLng);
+        displayPopupWindows(car,carlist[i-1],map,userLatLng);
+        carsMakers[parseInt(carlist[i-1].id)]=car;
     }
 
+}
+
+function putCarMakers() {
+    for (let i = 1; i <= cars.length; i++) {
+        if (cars[i-1].inUse === 'available' && cars[i-1].pendingTime === 'off'){
+            carsMakers[i].setMap(map);
+        }
+        else {
+            carsMakers[i].setMap(null);
+        }
+    }
+    console.log(carsMakers.length);
 }
 
 function initMap() {
@@ -75,13 +92,14 @@ function initMap() {
             });
             map.setCenter(pos);
 //http://pngimg.com/uploads/taxi/taxi_PNG7.png
-            var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
-            let userLatLng = {
+            userLatLng = {
                 latitude: user.getPosition().lat(),
                 longitude: user.getPosition().lng()
             };
-            showCarsOnMap(userLatLng, map, cars, image);
+            makeCarMakers(userLatLng, map, cars, image);
+            putCarMakers();
 
 
         }, function() {
@@ -92,7 +110,10 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-
+window.setInterval(function(){
+    getCars();
+    putCarMakers();
+}, 5000);
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?

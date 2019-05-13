@@ -7,16 +7,20 @@
  * Time: 7:44 PM
  */
 
+use app\assets\PaypalCallback;
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 \app\assets\AppAsset::register($this);
+PaypalCallback::register($this);
 ?>
 
 <head>
-
-    <body onload="pendingTime()">
-        <span id="count"></span>
-        <?= HTML::Button('Confirm', ['class' => 'btn btn-primary', 'id' => 'stopPending', 'name' => 'confirm1']) ?>
-    </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 </head>
+<body onload="pendingTime()">
+
+<span id="count"></span>
+<div id="paypal-button-container"></div> <h1>To Confirm</h1>
+</body>
