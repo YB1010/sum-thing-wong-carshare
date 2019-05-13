@@ -113,7 +113,7 @@ $data = ArrayHelper::toArray($cars, [
 <body>
 
 
-<h1 style="margin-left: -150px">Book</h1>
+<h1 style="margin-left: -150px">Booking</h1>
 <script>
     console.log(1);
 </script>
