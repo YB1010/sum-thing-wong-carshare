@@ -176,7 +176,7 @@ $data = ArrayHelper::toArray($cars, [
                                 '<div style="float:left;width:300px;" >' +
                                 '<div ><img id="'+"img"+i+'" style="width:350px;height:200px;margin-top: 10px" src="'+"img/"+jsdata[i]['carImgUrl']+'"></div>' +
                                 '<div style="width:350px;height:40px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div></div>' +
-                                '<div style="float:left;width:250px;text-align: center|left"><div id="'+"people"+i+'" style="height:50px;margin-top: 80px">'+"peoples :"+jsdata[i]['peoples']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
+                                '<div style="float:left;width:250px;text-align: center"><div id="'+"people"+i+'" style="height:50px;margin-top: 80px">'+"peoples :"+jsdata[i]['peoples']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
                                 '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
                                 '</div>';
                             html+=div;
