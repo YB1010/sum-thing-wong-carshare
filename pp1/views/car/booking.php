@@ -29,9 +29,7 @@ $data = ArrayHelper::toArray($cars, [
         'carImgUrl'
     ],
 ]);
-$jsonData = json_encode($data);
-MapAsset::register($this);
-GoogleMapCallback::register($this);
+
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
@@ -113,18 +111,16 @@ GoogleMapCallback::register($this);
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<script>
-    var jsonObj = <?php echo $jsonData; ?>;
 
-    $.ajaxSetup({
-        data: <?= \yii\helpers\Json::encode([
-            \yii::$app->request->csrfParam => \yii::$app->request->csrfToken,
-        ]) ?>
-    });
-</script>
 
 <h1 style="margin-left: -150px">Book</h1>
+<script>
+    console.log(1);
+</script>
 <div id="map"></div>
+<script>
+    console.log(1);
+</script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script>
         jsdata =[];
