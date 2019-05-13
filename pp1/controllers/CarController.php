@@ -136,11 +136,15 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
-        if (isset($_POST['booking2'])) {
+        if (isset($_POST['booking2']) && isset($_SESSION['email'])) {
             $_SESSION['carID'] = $_POST['booking2'];
             $model->updateBookingStatus();
             return $this->redirect(['car/car-confirmed']);
-        } else {
+        }elseif(isset($_POST['booking2'])){
+            Yii::$app->session->setFlash('error', "Please Login First!!");
+            return $this->redirect('index.php?r=registration/signin');
+        }
+        else {
             return $this->render('booking');
         }
     }
