@@ -29,9 +29,7 @@ $data = ArrayHelper::toArray($cars, [
         'carImgUrl'
     ],
 ]);
-$jsonData = json_encode($data);
-MapAsset::register($this);
-GoogleMapCallback::register($this);
+
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
@@ -110,29 +108,20 @@ GoogleMapCallback::register($this);
             width: 200px;
         }
     </style>
-    <link src="css/bootstrap.min.css" />
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-
 </head>
 <body>
-<script>
-    var jsonObj = <?php echo $jsonData; ?>;
-    $.ajaxSetup({
-        data: <?= \yii\helpers\Json::encode([
-            \yii::$app->request->csrfParam => \yii::$app->request->csrfToken,
-        ]) ?>
-    });
-</script>
-<form action="" method="post" id="form">
-    <div id="map">
-        <input name="<?= Yii::$app->request->csrfParam; ?>" type="hidden"
-               value="<?= Yii::$app->request->csrfToken; ?>"/>
-    </div>
 
-</form>>
+
 <h1 style="margin-left: -150px">Booking</h1>
+<script>
+
+</script>
 <div id="map"></div>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
+<script>
+
+</script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script>
         jsdata =[];
     </script>
@@ -168,6 +157,7 @@ GoogleMapCallback::register($this);
                             jsdata[i]['peoples'] = 4;
                         }
                     }
+                    console.log(jsdata);
                     for(i = 0; i < jsdata.length; i++){
                         for(j=i+1;j<jsdata.length;j++){
                             if(eval(jsdata[i]['km'])>eval(jsdata[j]['km'])){
