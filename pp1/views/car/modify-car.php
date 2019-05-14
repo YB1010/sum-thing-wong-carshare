@@ -33,7 +33,6 @@ use yii\helpers\Html; ?>
 <div class="form-group">
     <div class="col-lg-offset-1 col-lg-11">
         <?= HTML::submitButton('Update details', ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Upload images', ['upload-images'], ['class' => 'btn btn-success']) ?>
     </div>
 </div>
 <?php $form = ActiveForm::end() ?>
