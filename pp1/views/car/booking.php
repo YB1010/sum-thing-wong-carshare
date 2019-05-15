@@ -39,7 +39,7 @@ $data = ArrayHelper::toArray($cars, [
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #border{
-            width: 55%;
+            width: 60%;
             background: red;
             height: 720px;
             float: left;
@@ -48,7 +48,7 @@ $data = ArrayHelper::toArray($cars, [
         }
 
         #map{
-            width: 45%;
+            width: 40%;
             height: 720px;
             float: right;
         }
@@ -136,9 +136,6 @@ $data = ArrayHelper::toArray($cars, [
         }
     }
     ?>
-   <script>
-       console.log(jsdata);
-   </script>
     <script>
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -150,7 +147,6 @@ $data = ArrayHelper::toArray($cars, [
                         var km = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
                         jsdata[i]['km'] = km;
                     }
-                    console.log(jsdata);
                     for(i = 0; i < jsdata.length; i++){
                         for(j=i+1;j<jsdata.length;j++){
                             if(eval(jsdata[i]['km'])>eval(jsdata[j]['km'])){
@@ -164,18 +160,18 @@ $data = ArrayHelper::toArray($cars, [
                     function get() {
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
-                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 500px" float:left ;class="panel-body">' +
-                                '<div style="float:left;width:150px;" >' +
-                                '<div ><img id="'+"img"+i+'" style="width:150px;height:80px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
-                                '<div style="width:150px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
-                                '</div>' +
-                                '<div style="float:left;width:150px;text-align: center"><div id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
-                                '<div style="width:100px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 100px;">Book</button> </div>' +
-                                '</div>';
-                            html+=div;
-
+                            if(jsdata[i]['inUse']=="available"){
+                                var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" float:left ;class="panel-body">' +
+                                    '<div style="float:left;width:300px;" >' +
+                                    '<div ><img id="'+"img"+i+'" style="width:250px;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
+                                    '<div style="width:350px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
+                                    '</div>' +
+                                    '<div style="float:left;width:250px;text-align: center"><div id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
+                                    '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
+                                    '</div>';
+                                html+=div;
+                            }
                         }
-                        console.log(html);
                         root.innerHTML = html;
                     }
                     get();
