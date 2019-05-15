@@ -100,6 +100,7 @@ $data = ArrayHelper::toArray($cars, [
             width: 200px;
         }
     </style>
+	 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -159,13 +160,13 @@ $data = ArrayHelper::toArray($cars, [
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
                             if(jsdata[i]['inUse']=="available"){
-                                var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" float:left ;class="panel-body">' +
+                                var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 100%;height:150px;" float:left ;class="panel-body">' +
                                     '<div style="float:left;width:300px;" >' +
                                     '<div ><img id="'+"img"+i+'" style="width:250px;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
                                     '<div style="width:300px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
                                     '</div>' +
-                                    '<div style="float:left;width:250px;text-align: center"><div id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
-                                    '<div style="width:100px;height:100%;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;text-align:center;">Book</button> </div>' +
+                                    '<div style="float:left;width:250px;height:150px;text-align: center"><div id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
+                                    '<div style="width:100px;height:150px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;text-align:center;">Book</button> </div>' +
                                     '</div>';
                                 html+=div;
                             }
