@@ -39,7 +39,7 @@ $data = ArrayHelper::toArray($cars, [
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #border{
-            width: 55%;
+            width: 50%;
             height: 720px;
             float: left;
             position: relative;
@@ -54,7 +54,7 @@ $data = ArrayHelper::toArray($cars, [
             position: relative;
         }
         #map{
-            width: 45%;
+            width: 50%;
             height: 720px;
             float: right;
         }
@@ -175,8 +175,8 @@ $data = ArrayHelper::toArray($cars, [
                                 '<div ><img id="'+"img"+i+'" style="width:150px;height:80px;margin-top: 10px" src="'+"img/"+jsdata[i]['carImgUrl']+'"></div>' +
                                 '<div style="width:150px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
                                 '</div>' +
-                                '<div style="float:left;width:150px;text-align: center"><div id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
-                                '<div style="width:100px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;">Book</button> </div>' +
+                                '<div style="float:left;width:150px;text-align: center"><div id="'+"people"+i+'" style="height:50px;margin-top: 80px">'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
+                                '<div style="width:100px;height:80px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
                                 '</div>';
                             html+=div;
                         }
