@@ -39,11 +39,11 @@ $data = ArrayHelper::toArray($cars, [
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #border{
-            width: 50%;
+            width: 40%;
             height: 720px;
             float: left;
             position: relative;
-
+            overflow-y: scroll
         }
         #son_div{
             margin-top: 20px;
@@ -54,7 +54,7 @@ $data = ArrayHelper::toArray($cars, [
             position: relative;
         }
         #map{
-            width: 50%;
+            width: 60%;
             height: 720px;
             float: right;
         }
@@ -113,7 +113,7 @@ $data = ArrayHelper::toArray($cars, [
 <body>
 
 
-<h1 style="margin-left: -150px;margin-top: 50px">Booking</h1>
+<h1 style="margin-left: -150px">Booking</h1>
 <script>
 
 </script>
@@ -142,9 +142,6 @@ $data = ArrayHelper::toArray($cars, [
         }
     }
     ?>
-   <script>
-       console.log(jsdata);
-   </script>
     <script>
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -170,13 +167,12 @@ $data = ArrayHelper::toArray($cars, [
                     function get() {
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
-                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 400px" class="panel-body">' +
-                                '<div style="float:left;width:150px;" >' +
-                                '<div ><img id="'+"img"+i+'" style="width:150px;height:80px;margin-top: 10px" src="'+"img/"+jsdata[i]['carImgUrl']+'"></div>' +
-                                '<div style="width:150px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
-                                '</div>' +
-                                '<div style="float:left;width:150px;text-align: center"><div id="'+"people"+i+'" style="height:50px;margin-top: 80px">'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
-                                '<div style="width:100px;height:80px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
+                            var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" class="panel-body">' +
+                                '<div style="float:left;width:300px;" >' +
+                                '<div ><img id="'+"img"+i+'" style="width:250px;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carImgUrl']+'"></div>' +
+                                '<div style="width:350px;height:40px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div></div>' +
+                                '<div style="float:left;width:250px;text-align: center"><div id="'+"people"+i+'" style="height:50px;margin-top: 80px">'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
+                                '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
                                 '</div>';
                             html+=div;
                         }
