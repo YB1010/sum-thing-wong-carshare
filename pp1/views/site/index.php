@@ -11,7 +11,7 @@ $this->title = 'My Yii Application';
         <h1><font color="white">Sum-thing-wrong's SOCAR</font></h1></h1>
     </div>
 
-    <div class="body-content"  style="text-align: center">
+    <div style="text-align: center">
 
         <div class="row" style="text-align: center;width: 100%">
             <div class="col-lg-4" style="text-align: center;width: 100%">
