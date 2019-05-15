@@ -40,11 +40,9 @@ $data = ArrayHelper::toArray($cars, [
          * element that contains the map. */
         #border{
             width: 60%;
-            background: red;
             height: 720px;
             float: left;
             position: relative;
-
         }
 
         #map{
@@ -164,10 +162,10 @@ $data = ArrayHelper::toArray($cars, [
                                 var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 850px" float:left ;class="panel-body">' +
                                     '<div style="float:left;width:300px;" >' +
                                     '<div ><img id="'+"img"+i+'" style="width:250px;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
-                                    '<div style="width:350px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
+                                    '<div style="width:300px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
                                     '</div>' +
                                     '<div style="float:left;width:250px;text-align: center"><div id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
-                                    '<div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;margin-top: 110px">Book</button> </div>' +
+                                    '<div style="width:100px;height:100%;float:left;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" name="booking2" style="width: 150px;text-align:center;">Book</button> </div>' +
                                     '</div>';
                                 html+=div;
                             }
