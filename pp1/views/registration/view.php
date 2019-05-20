@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->email;
 $this->params['breadcrumbs'][] = ['label' => 'Registrations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="registration-view">
 
@@ -33,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'password',
             'passwordVerify',
+            'carId',
         ],
     ]) ?>
 

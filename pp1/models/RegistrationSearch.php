@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Registration;
@@ -13,17 +12,18 @@ use app\models\Registration;
 class RegistrationSearch extends Registration
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['FirstName', 'LastName', 'email', 'password', 'passwordVerify'], 'safe'],
+            [['carId'], 'integer'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -57,10 +57,15 @@ class RegistrationSearch extends Registration
         }
 
         // grid filtering conditions
+        $query->andFilterWhere([
+            'carId' => $this->carId,
+        ]);
+
         $query->andFilterWhere(['like', 'FirstName', $this->FirstName])
             ->andFilterWhere(['like', 'LastName', $this->LastName])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'password', $this->password])
+            ->andFilterWhere(['like', 'carId', $this->carId])
             ->andFilterWhere(['like', 'passwordVerify', $this->passwordVerify]);
 
         return $dataProvider;

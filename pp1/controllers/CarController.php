@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\LoginForm;
+use app\models\Registration;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
@@ -136,8 +137,15 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
+        $user = new Registration();
+        $email = Yii::$app->session->get('email');
+
+//        $checkId = Registration::find()->select(['carId'])->where('email=:email',[':email' => $email])->One();
         if (isset($_POST['booking2']) && isset($_SESSION['email'])) {
             $_SESSION['carID'] = $_POST['booking2'];
+            //update database carid field to the corresponding carId
+            $user::updateAll(['carId'=>$_SESSION['carID']],['email'=>$email]);
+
             $model->updateBookingStatus();
             return $this->redirect(['car/car-confirmed']);
         }elseif(isset($_POST['booking2'])){
@@ -189,8 +197,13 @@ class CarController extends Controller
             return $this->render('modify-car',['model'=>$model]);
         }
     }
+
     public function actionGetCars(){
         $cars = Car::find()->orderBy('id')->all();
         return $this->asJson($cars);
+    }
+
+    public function actionReturn(){
+        return $this->render('return');
     }
 }
