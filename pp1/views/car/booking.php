@@ -32,10 +32,6 @@ $data = ArrayHelper::toArray($cars, [
 ]);
 $jsonData = json_encode($data);
 
-
-
-
-
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
@@ -116,9 +112,6 @@ $jsonData = json_encode($data);
 
 </script>
 <div id="map"></div>
-<script>
-
-</script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script>
         var jsonObj = <?php echo $jsonData; ?>;
@@ -188,23 +181,6 @@ $jsonData = json_encode($data);
 <form action="" method="post" id="form">
 
     <div id="border"   >
-<!--        <div  style="border:1px solid gray;" class="panel-body">-->
-<!--            <div style="float:left;width:350px;" >-->
-<!--                <div>-->
-<!--                    <img id="img0" style="width:350px;height:200px;margin-top: 10px" src="img/Hyundai.jpg" >-->
-<!--                </div>-->
-<!--                <div style="width:350px;height:40px;font-size:25px;text-align: center;float: left;" >-->
-<!--                    <b><div id="carname0">Hyundai</div></b>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div style="float:left;width:250px;text-align: left">-->
-<!--                    <div id="peoples0" style="height:50px;margin-top: 80px">3</div>-->
-<!--                    <div id="km0">7578.95</div>-->
-<!--            </div>-->
-<!--            <div style="width:100px;height:50px;float:left;text-align: right"><span id="count"></span>-->
-<!--                    <button class="btn btn-primary" id="startClocking" name="booking1" style="width: 150px;margin-top: 110px">Book</button>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 </form>
 
