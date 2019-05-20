@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Console;
 
 /**
  * This is the model class for table "registration".

@@ -4,10 +4,12 @@ namespace app\controllers;
 
 use app\models\LoginForm;
 use app\models\Registration;
+use app\models\User;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
 use yii\db\Exception;
+use yii\log\Logger;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -140,10 +142,17 @@ class CarController extends Controller
         $user = new Registration();
         $email = Yii::$app->session->get('email');
 
-//        $checkId = Registration::find()->select(['carId'])->where('email=:email',[':email' => $email])->One();
+        if (isset($_SESSION['email'])){
+            $checkId = Registration::find()->select(['carId'])->where('email=:email', [':email' => $email])->One();
+
+            if ($checkId->attributes["carId"]!=null) {
+                Yii::$app->session->set('return',$checkId->attributes["carId"]);
+                return $this->render('returnCar');
+            }
+        }
+
         if (isset($_POST['booking2']) && isset($_SESSION['email'])) {
             $_SESSION['carID'] = $_POST['booking2'];
-            //update database carid field to the corresponding carId
             $user::updateAll(['carId'=>$_SESSION['carID']],['email'=>$email]);
 
             $model->updateBookingStatus();
@@ -161,8 +170,9 @@ class CarController extends Controller
     public function actionConfirmStatus()
     {
         $model = new Car();
-        if (isset($_POST['payed'])&&isset($_SESSION['carID'])&&$_POST['payed']=='true')
+        if (isset($_POST['payed'])&&isset($_SESSION['carID'])&&$_POST['payed']=='true'){
             $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
+        }
         unset($_SESSION['carID']);
         return $this->redirect(['car/booking']);
     }
@@ -187,6 +197,15 @@ class CarController extends Controller
     {
         return $this->render('car-confirmed');
     }
+    public function actionReturnCar()
+    {
+        $user = new Registration();
+        $model = new Car();
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_SESSION['return']]);
+        $user::updateAll(['carId' => ""], ['email' => Yii::$app->session->get('email')]);
+        Yii::$app->session->remove("return");
+        return $this->redirect(['car/booking']);
+    }
 
     public function actionModifyCar(){
         $model = new Car();
@@ -204,6 +223,6 @@ class CarController extends Controller
     }
 
     public function actionReturn(){
-        return $this->render('return');
+
     }
 }
