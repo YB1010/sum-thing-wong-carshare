@@ -24,7 +24,7 @@ function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
         var contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
-            '<p><button class="btn btn-primary" id="startClocking0" name="booking2" value="'+carInfo.id+'">Book</button></p>';
+            '<p><button class="btn btn-primary" id="startClocking" name="booking2" value="'+carInfo.id+'">Book</button></p>';
         //var button = '<form action="" method="post" id="mapForm"> <input type="hidden" name="booking2" value="'+carInfo.id+'"><input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>"/><input type="submit" value="Book"></form>';
         var popupWindow = new google.maps.InfoWindow({
             content: contentString
