@@ -12,10 +12,10 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use app\assets\MapAsset;
-MapAsset::register($this);
 use app\assets\GoogleMapCallback;
-GoogleMapCallback::register($this);
 \app\assets\AppAsset::register($this);
+MapAsset::register($this);
+GoogleMapCallback::register($this);
 $this->title = 'Booking car';
 $cars = Car::find()->orderBy('id')->all();
 $data = ArrayHelper::toArray($cars, [
@@ -30,6 +30,11 @@ $data = ArrayHelper::toArray($cars, [
         'numOfPassenger'
     ],
 ]);
+$jsonData = json_encode($data);
+
+
+
+
 
 ?>
 <head>

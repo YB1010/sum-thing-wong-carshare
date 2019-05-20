@@ -98,7 +98,7 @@ function initMap() {
                 latitude: user.getPosition().lat(),
                 longitude: user.getPosition().lng()
             };
-            getCars();
+
             makeCarMakers(userLatLng, map, cars, image);
             putCarMakers();
 
