@@ -141,21 +141,21 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
-
+        $email = Yii::$app->session->get('email');
 
         if (isset($_SESSION['email'])){
             $checkId = Registration::find()->select(['carId'])->where('email=:email', [':email' => $email])->One();
 
             if ($checkId->attributes["carId"]!=null) {
-                Yii::$app->session->set('return',$checkId->attributes["carId"]);
+                $session = Yii::$app->session;
+                $session->open();
+                $session->set('return',$checkId->attributes["carId"]);
                 return $this->render('returnCar');
             }
         }
 
         if (isset($_POST['booking2']) && isset($_SESSION['email'])) {
             $_SESSION['carID'] = $_POST['booking2'];
-            $user::updateAll(['carId'=>$_SESSION['carID']],['email'=>$email]);
-
             $model->updateBookingStatus();
             return $this->redirect(['car/car-confirmed']);
         } elseif (isset($_POST['booking2'])) {
@@ -206,7 +206,8 @@ class CarController extends Controller
     {
         $user = new Registration();
         $model = new Car();
-        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_SESSION['return']]);
+        $return = Yii::$app->session->get('return');
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $return]);
         $user::updateAll(['carId' => ""], ['email' => Yii::$app->session->get('email')]);
         Yii::$app->session->remove("return");
         return $this->redirect(['car/booking']);
@@ -229,10 +230,6 @@ class CarController extends Controller
         return $this->asJson($cars);
     }
 
-    public function actionReturn()
-    {
-        return $this->render('return');
-    }
 
     public function actionRentHistory()
     {
