@@ -53,7 +53,7 @@ class Receipt extends \yii\db\ActiveRecord
         $model = new Receipt();
         $email = Yii::$app->session->get('email');
         date_default_timezone_set('Australia/Melbourne');
-        $startDate = date('m/d/Y H:i:s', time());
+        $startDate = date("Y-m-d H:i:s");
         $model->email = $email;
         $model->carId = $_SESSION['carID'];
         $model->startDate = $startDate;
