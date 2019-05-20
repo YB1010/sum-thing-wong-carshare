@@ -121,6 +121,7 @@ $jsonData = json_encode($data);
 </script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <script>
+        var jsonObj = <?php echo $jsonData; ?>;
         jsdata =[];
     </script>
     <?php
