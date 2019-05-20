@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\LoginForm;
+use app\models\Receipt;
+use app\models\ReceiptSearch;
 use app\models\Registration;
 use Yii;
 use app\models\Car;
@@ -161,8 +163,10 @@ class CarController extends Controller
     public function actionConfirmStatus()
     {
         $model = new Car();
+        $receipt = new Receipt();
         if (isset($_POST['payed'])&&isset($_SESSION['carID'])&&$_POST['payed']=='true')
             $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
+            $receipt->addRecord();
         unset($_SESSION['carID']);
         return $this->redirect(['car/booking']);
     }
@@ -205,5 +209,15 @@ class CarController extends Controller
 
     public function actionReturn(){
         return $this->render('return');
+    }
+
+    public function actionRentHistory(){
+        $searchModel = new ReceiptSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('rent-history', [
+            'dataProvider' => $dataProvider,
+        ]);
+
     }
 }

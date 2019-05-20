@@ -41,14 +41,14 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Rent', 'url' => ['/site/rent']],
+            ['label' => 'History', 'url' => ['/car/rent-history']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Booking', 'url' =>['/car/booking']],
 //            ['label' => 'Login', 'url' => ['/registration/signup']],
             isset(Yii::$app->session["email"]) ? (
             ['label' => 'LogOut', 'url' => ['/registration/signout']]
             ): (
-            ['label' => 'Login', 'url' => ['/registration/signin']]
+            ""
             )
         ],
     ]);
