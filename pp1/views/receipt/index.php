@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\RegistrationSearch */
+/* @var $searchModel app\models\ReceiptSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Registrations';
+$this->title = 'Receipts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="registration-index">
+<div class="receipt-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Registration', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Receipt', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,12 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'FirstName',
-            'LastName',
             'email:email',
-            'password',
-            'passwordVerify',
             'carId',
+            'startDate',
+            'balance',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

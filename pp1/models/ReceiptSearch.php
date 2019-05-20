@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Registration;
+use app\models\Receipt;
 
 /**
- * RegistrationSearch represents the model behind the search form of `app\models\Registration`.
+ * ReceiptSearch represents the model behind the search form of `app\models\Receipt`.
  */
-class RegistrationSearch extends Registration
+class ReceiptSearch extends Receipt
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class RegistrationSearch extends Registration
     public function rules()
     {
         return [
-            [['FirstName', 'LastName', 'email', 'password', 'passwordVerify'], 'safe'],
-            [['carId'], 'integer'],
+            [['email', 'startDate'], 'safe'],
+            [['carId', 'balance'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class RegistrationSearch extends Registration
      */
     public function search($params)
     {
-        $query = Registration::find();
+        $query = Receipt::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,11 @@ class RegistrationSearch extends Registration
         // grid filtering conditions
         $query->andFilterWhere([
             'carId' => $this->carId,
+            'startDate' => $this->startDate,
+            'balance' => $this->balance,
         ]);
 
-        $query->andFilterWhere(['like', 'FirstName', $this->FirstName])
-            ->andFilterWhere(['like', 'LastName', $this->LastName])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'carId', $this->carId])
-            ->andFilterWhere(['like', 'passwordVerify', $this->passwordVerify]);
+        $query->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }

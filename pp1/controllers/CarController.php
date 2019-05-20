@@ -3,10 +3,15 @@
 namespace app\controllers;
 
 use app\models\LoginForm;
+use app\models\Receipt;
+use app\models\ReceiptSearch;
+use app\models\Registration;
+use app\models\User;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
 use yii\db\Exception;
+use yii\log\Logger;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -136,15 +141,27 @@ class CarController extends Controller
     public function actionBooking()
     {
         $model = new Car();
+        $email = Yii::$app->session->get('email');
+
+        if (isset($_SESSION['email'])){
+            $checkId = Registration::find()->select(['carId'])->where('email=:email', [':email' => $email])->One();
+
+            if ($checkId->attributes["carId"]!=null) {
+                $session = Yii::$app->session;
+                $session->open();
+                $session->set('return',$checkId->attributes["carId"]);
+                return $this->render('returnCar');
+            }
+        }
+
         if (isset($_POST['booking2']) && isset($_SESSION['email'])) {
             $_SESSION['carID'] = $_POST['booking2'];
             $model->updateBookingStatus();
             return $this->redirect(['car/car-confirmed']);
-        }elseif(isset($_POST['booking2'])){
+        } elseif (isset($_POST['booking2'])) {
             Yii::$app->session->setFlash('error', "Please Login First!!");
             return $this->redirect('index.php?r=registration/signin');
-        }
-        else {
+        } else {
             return $this->render('booking');
         }
     }
@@ -153,8 +170,14 @@ class CarController extends Controller
     public function actionConfirmStatus($id)
     {
         $model = new Car();
-        if (isset($_POST['payed'])&&isset($_SESSION['carID'])&&$_POST['payed']=='true')
+        $receipt = new Receipt();
+        $user = new Registration();
+        $email = Yii::$app->session->get('email');
+        if (isset($_POST['payed']) && isset($_SESSION['carID']) && $_POST['payed'] == 'true')
             $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
+            //update database carid field to the corresponding carId
+            $user::updateAll(['carId' => $_SESSION['carID']], ['email' => $email]);
+            $receipt->addRecord();
         unset($_SESSION['carID']);
         return $this->redirect(['car/booking']);
     }
@@ -185,18 +208,43 @@ class CarController extends Controller
     {
         return $this->render('car-confirmed');
     }
+    public function actionReturnCar()
+    {
+        $user = new Registration();
+        $model = new Car();
+        $return = Yii::$app->session->get('return');
+        $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $return]);
+        $user::updateAll(['carId' => ""], ['email' => Yii::$app->session->get('email')]);
+        Yii::$app->session->remove("return");
+        return $this->redirect(['car/booking']);
+    }
 
-    public function actionModifyCar(){
+    public function actionModifyCar()
+    {
         $model = new Car();
         $model->scenario = 'change';
-        if ($model->load(Yii::$app->request->post()) && $model->updateCarDetails()){
+        if ($model->load(Yii::$app->request->post()) && $model->updateCarDetails()) {
             return $this->redirect(['car/booking']);
-        }else{
-            return $this->render('modify-car',['model'=>$model]);
+        } else {
+            return $this->render('modify-car', ['model' => $model]);
         }
     }
-    public function actionGetCars(){
+
+    public function actionGetCars()
+    {
         $cars = Car::find()->orderBy('id')->all();
         return $this->asJson($cars);
+    }
+
+
+    public function actionRentHistory()
+    {
+        $searchModel = new ReceiptSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('rent-history', [
+            'dataProvider' => $dataProvider,
+        ]);
+
     }
 }

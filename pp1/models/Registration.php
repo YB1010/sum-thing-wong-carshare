@@ -3,8 +3,7 @@
 namespace app\models;
 
 use Yii;
-use yii\web\IdentityInterface;
-use  yii\web\Session;
+use yii\helpers\Console;
 
 /**
  * This is the model class for table "registration".
@@ -14,15 +13,12 @@ use  yii\web\Session;
  * @property string $email
  * @property string $password
  * @property string $passwordVerify
+ * @property int $carId
  */
-class Registration extends \yii\db\ActiveRecord implements IdentityInterface
+class Registration extends \yii\db\ActiveRecord
 {
-    public $id;
-    public $auth_key;
-    public $accessToken;
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -30,22 +26,22 @@ class Registration extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['FirstName', 'LastName', 'email', 'password', 'passwordVerify'], 'required'],
+            [['carId'], 'integer'],
             [['FirstName', 'LastName'], 'string', 'max' => 39],
             [['email'], 'string', 'max' => 50],
             [['password', 'passwordVerify'], 'string', 'max' => 40],
             [['email'], 'unique'],
-            ['password', 'passwordCheck'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -55,9 +51,9 @@ class Registration extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => 'Email',
             'password' => 'Password',
             'passwordVerify' => 'Password Verify',
+            'carId' => 'Car ID',
         ];
     }
-
     public function signUp()
     {
         if (!$this->validate()) {

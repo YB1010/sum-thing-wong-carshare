@@ -29,7 +29,6 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    $admin = Yii::$app->session->get('email');
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -42,19 +41,16 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Rent', 'url' => ['/site/rent']],
+            ['label' => 'History', 'url' => ['/car/rent-history']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Booking', 'url' =>['/car/booking']],
-
-            $admin == "admin@admin.com" ? ['label'=>'Admin', 'url'=>['/car/modify-car']]:"",
+//            ['label' => 'Login', 'url' => ['/registration/signup']],
             isset(Yii::$app->session["email"]) ? (
             ['label' => 'LogOut', 'url' => ['/registration/signout']]
-
             ): (
-            ['label' => 'Login', 'url' => ['/registration/signin']]
+            ""
             )
         ],
-
     ]);
     NavBar::end();
     ?>
@@ -69,13 +65,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
