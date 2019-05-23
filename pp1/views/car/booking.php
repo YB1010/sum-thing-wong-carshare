@@ -102,8 +102,7 @@ $jsonData = json_encode($data);
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
-<body bgcolor="#F0F0F0">
-
+<body style="background-color:#ADADAD;">
 
 <h1 style="margin-left: -150px;margin-top: 50px">Socar</h1>
 <script>
@@ -156,7 +155,7 @@ $jsonData = json_encode($data);
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
                             if(jsdata[i]['inUse']=="available"){
-                                var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 100%;height:150px;" float:left ;class="panel-body">' +
+                                var div='<div  style="background:white;border:2px solid blue;border-radius:25px;margin-top: 3px;width: 100%;height:150px;" float:left ;class="panel-body">' +
                                     '<div style="float:left;width:240px;margin-left:10px" >' +
                                     '<div ><img id="'+"img"+i+'" style="width:240px;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
                                     '<div style="width:240px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
