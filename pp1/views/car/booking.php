@@ -31,7 +31,6 @@ $data = ArrayHelper::toArray($cars, [
     ],
 ]);
 $jsonData = json_encode($data);
-
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
@@ -45,7 +44,6 @@ $jsonData = json_encode($data);
             float: left;
             position: relative;
         }
-
         #map{
             width: 40%;
             height: 720px;
@@ -101,15 +99,13 @@ $jsonData = json_encode($data);
             width: 200px;
         }
     </style>
-	 
+
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
-<body>
+<body style="background-color:#ADADAD;">
 
-
-<h1 style="margin-left: -150px;margin-top: 50px">Booking</h1>
+<h1 style="margin-left: -150px;margin-top: 50px">Socar</h1>
 <script>
-
 </script>
 <div id="map"></div>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
@@ -159,12 +155,12 @@ $jsonData = json_encode($data);
                         var html = '';
                         for(var i=0;i<jsdata.length;i++){
                             if(jsdata[i]['inUse']=="available"){
-                                var div='<div  style="border:2px solid blue;border-radius:25px;margin-top: 3px;width: 100%;height:150px;" float:left ;class="panel-body">' +
+                                var div='<div  style="background:white;border:2px solid blue;border-radius:25px;margin-top: 3px;width: 100%;height:150px;" float:left ;class="panel-body">' +
                                     '<div style="float:left;width:240px;margin-left:10px" >' +
                                     '<div ><img id="'+"img"+i+'" style="width:240px;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
                                     '<div style="width:240px;height:30px;font-size:25px;text-align: center"><b><div id="'+"carname"+i+'">'+jsdata[i]['carName']+'</div></b></div>' +
                                     '</div>' +
-                                    '<div style="float:left;width:240px;height:150px;text-align:center;"><div style="margin-top:55px;" id="'+"people"+i+'" >'+"peoples :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
+                                    '<div style="float:left;width:240px;height:150px;text-align:center;"><div style="margin-top:55px;" id="'+"people"+i+'" >'+"people :"+jsdata[i]['numOfPassenger']+'</div><div id="'+"km"+i+'">'+"kilometer:"+jsdata[i]['km']+" km "+'</div> </div>' +
                                     '<div style="width:140px;height:150px;float:left;margin-left:-10px;text-align: right"><span id="count"></span><button class="btn btn-primary" id="startClocking" value="'+jsdata[i]['id']+'" name="booking2" style="width: 140px;text-align:center;margin-top:55px;">Book</button> </div>' +
                                     '</div>';
                                 html+=div;
