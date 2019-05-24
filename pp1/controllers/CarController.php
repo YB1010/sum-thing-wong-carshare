@@ -234,8 +234,8 @@ class CarController extends Controller
     public function actionRentHistory()
     {
         $searchModel = new ReceiptSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $account = Yii::$app->session->get('email');
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $searchModel->email = $account);
         return $this->render('rent-history', [
             'dataProvider' => $dataProvider,
         ]);
