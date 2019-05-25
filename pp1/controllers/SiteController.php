@@ -61,7 +61,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect(['car/booking']);
     }
 
     /**
@@ -116,14 +116,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays Rent page.
-     *
-     * @return string
-     */
-    public function actionRent()
-    {
-        return $this->render('rent');
-    }
+
 
 }
