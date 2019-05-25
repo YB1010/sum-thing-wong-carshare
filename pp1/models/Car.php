@@ -72,22 +72,5 @@ class Car extends \yii\db\ActiveRecord
         }
     }
 
-    public function updateCarDetails(){
-        if(!$this->validate()){
-            return null;
-        }
-        $model = new Car();
-        $model->carName = $this->carName;
-        $model->carImgUrl = UploadedFile::getInstance($model,'carImgUrl');
-        $img_name = $model->carName.'.'.$model->carImgUrl->extension;
-        $img_path = 'img/'.$img_name;
-        $model->carImgUrl->saveAs($img_path);
-        $model->carImgUrl = $img_name;
 
-        $model->numOfPassenger = $this->numOfPassenger;
-        $model::updateAll(['carName'=>$model->carName],['id'=>$this->id]);
-        $model::updateAll(['carImgUrl'=>$model->carImgUrl],['id'=>$this->id]);
-        $model::updateAll(['numOfPassenger'=>$model->numOfPassenger],['id'=>$this->id]);
-        return true;
-    }
 }

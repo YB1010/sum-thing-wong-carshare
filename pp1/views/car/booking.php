@@ -102,7 +102,7 @@ $jsonData = json_encode($data);
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
-<body style="background-color:#ADADAD;">
+<body >
 
 <h1 style="margin-left: -150px;margin-top: 50px">Socar</h1>
 <script>
