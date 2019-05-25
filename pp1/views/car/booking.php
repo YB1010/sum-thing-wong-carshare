@@ -21,8 +21,7 @@ $cars = Car::find()->orderBy('id')->all();
 $data = ArrayHelper::toArray($cars, [
     'app\models\Car' => [
         'id',
-        'latitude',
-        'longitude',
+        'latitude',        'longitude',
         'pendingTime',
         'inUse',
         'carName',
@@ -98,6 +97,12 @@ $jsonData = json_encode($data);
             /* The max width of the info window. */
             width: 200px;
         }
+        #title-image{
+            /*height: 850px;*/
+            width: 50%;
+            margin-left: 25%;
+            float: left;
+        }
     </style>
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
@@ -105,7 +110,10 @@ $jsonData = json_encode($data);
 <body >
 
 
-<h1 style="margin-top: 50px">Booking</h1>
+<div>
+    <img id="title-image" src="../web/img/Logo.png" alt="logo">
+
+</div>
 <script>
 </script>
 <div id="map"></div>
