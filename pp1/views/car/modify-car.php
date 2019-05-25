@@ -3,37 +3,38 @@
 /**
  * Created by PhpStorm.
  * User: Yuchen Yao
- * Date: 10/05/2019
- * Time: 2:30 PM
+ * Date: 25/05/2019
+ * Time: 3:29 PM
  */
 
 /* @var $this \yii\web\View */
-$this->title = 'Modify car details';
+/* @var $searchModel app\models\CarSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+$this->title = 'Admin function';
+$this->params['breadcrumbs'][] = $this->title;
 
-use yii\bootstrap\ActiveForm;
-use yii\helpers\Html; ?>
-<head>
-    <title><?= HTML::encode($this->title) ?></title>
-</head>
-<body>
-<?php $form = ActiveForm::begin([
-    'options' => ['enctype' => 'multipart/form-data'],
-    'id' => 'Car',
-    'layout' => 'horizontal',
-    'fieldConfig' => [
-        'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        'labelOptions' => ['class' => 'col-lg-1 control-label'],
-    ],
-]); ?>
-<?= $form->field($model, 'id')->textInput(); ?>
-<?= $form->field($model, 'carName')->textInput(); ?>
-<?= $form->field($model, 'carImgUrl')->fileInput(); ?>
-<?= $form->field($model, 'numOfPassenger')->textInput(); ?>
+use yii\helpers\Html;
+use yii\grid\GridView;?>
+<div class="car-index">
 
-<div class="form-group">
-    <div class="col-lg-offset-1 col-lg-11">
-        <?= HTML::submitButton('Update details', ['class' => 'btn btn-primary']) ?>
-    </div>
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'carName',
+            'carImgUrl:image',
+            'numOfPassenger',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
 </div>
-<?php $form = ActiveForm::end() ?>
-</body>
