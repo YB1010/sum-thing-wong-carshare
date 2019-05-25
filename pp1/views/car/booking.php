@@ -31,7 +31,6 @@ $data = ArrayHelper::toArray($cars, [
     ],
 ]);
 $jsonData = json_encode($data);
-
 ?>
 <head>
     <title><?= HTML::encode($this->title) ?></title>
@@ -45,7 +44,6 @@ $jsonData = json_encode($data);
             float: left;
             position: relative;
         }
-
         #map{
             width: 56%;
             height: 720px;
@@ -101,15 +99,14 @@ $jsonData = json_encode($data);
             width: 200px;
         }
     </style>
-	 
+
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
-<body>
+<body >
 
 
 <h1 style="margin-top: 50px">Booking</h1>
 <script>
-
 </script>
 <div id="map"></div>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>

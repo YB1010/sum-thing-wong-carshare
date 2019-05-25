@@ -2,20 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\LoginForm;
 use app\models\Receipt;
 use app\models\ReceiptSearch;
 use app\models\Registration;
-use app\models\User;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
-use yii\db\Exception;
-use yii\log\Logger;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use  yii\web\Session;
+use yii\web\UploadedFile;
 
 /**
  * CarController implements the CRUD actions for Car model.
@@ -96,6 +93,11 @@ class CarController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->carImgUrl = UploadedFile::getInstance($model,'carImgUrl');
+            $img_name = $model->carName.'.'.$model->carImgUrl->extension;
+            $img_path = 'img/'.$img_name;
+            $model->carImgUrl->saveAs($img_path);
+            $model->carImgUrl = $img_name;
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -134,7 +136,7 @@ class CarController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    /*
+    /**
      * Booking car function
      * It has a pending time.
      */
@@ -143,13 +145,13 @@ class CarController extends Controller
         $model = new Car();
         $email = Yii::$app->session->get('email');
 
-        if (isset($_SESSION['email'])){
+        if (isset($_SESSION['email'])) {
             $checkId = Registration::find()->select(['carId'])->where('email=:email', [':email' => $email])->One();
 
-            if ($checkId->attributes["carId"]!=null) {
+            if ($checkId->attributes["carId"] != null) {
                 $session = Yii::$app->session;
                 $session->open();
-                $session->set('return',$checkId->attributes["carId"]);
+                $session->set('return', $checkId->attributes["carId"]);
                 return $this->render('returnCar');
             }
         }
@@ -175,9 +177,9 @@ class CarController extends Controller
         $email = Yii::$app->session->get('email');
         if (isset($_POST['payed']) && isset($_SESSION['carID']) && $_POST['payed'] == 'true')
             $model::updateAll(['pendingTime' => 'off', 'inUse' => 'confirmed'], ['id' => $_SESSION['carID']]);
-            //update database carid field to the corresponding carId
-            $user::updateAll(['carId' => $_SESSION['carID']], ['email' => $email]);
-            $receipt->addRecord();
+        //update database carid field to the corresponding carId
+        $user::updateAll(['carId' => $_SESSION['carID']], ['email' => $email]);
+        $receipt->addRecord();
         unset($_SESSION['carID']);
         return $this->redirect(['car/booking']);
     }
@@ -202,6 +204,7 @@ class CarController extends Controller
     {
         return $this->render('car-confirmed');
     }
+
     public function actionReturnCar()
     {
         $user = new Registration();
@@ -215,13 +218,14 @@ class CarController extends Controller
 
     public function actionModifyCar()
     {
-        $model = new Car();
-        $model->scenario = 'change';
-        if ($model->load(Yii::$app->request->post()) && $model->updateCarDetails()) {
-            return $this->redirect(['car/booking']);
-        } else {
-            return $this->render('modify-car', ['model' => $model]);
-        }
+
+        $searchModel = new CarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('modify-car', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionGetCars()
@@ -234,8 +238,8 @@ class CarController extends Controller
     public function actionRentHistory()
     {
         $searchModel = new ReceiptSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $account = Yii::$app->session->get('email');
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $searchModel->email = $account);
         return $this->render('rent-history', [
             'dataProvider' => $dataProvider,
         ]);
