@@ -37,14 +37,17 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    //  ['label' => 'rentTest', 'url' =>['/map/rent']],
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'History', 'url' => ['/car/rent-history']],
+            ['label' => 'Home', 'url' => ['/car/booking']],
+            isset(Yii::$app->session["email"]) ? (
+            ['label' => 'History', 'url' => ['/car/rent-history']]
+            ): (
+            ""
+            ),
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Booking', 'url' =>['/car/booking']],
             $admin == "admin@admin.com" ? ['label'=>'Admin', 'url'=>['/car/modify-car']]:"",
             isset(Yii::$app->session["email"]) ? (
             ['label' => 'LogOut', 'url' => ['/registration/signout']]
