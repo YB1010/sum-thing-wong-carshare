@@ -14,4 +14,5 @@ use app\assets\GoogleMapCallback;
 
 <h1>Thanks For your use</h1>
 
+
 <form action="index.php?r=car/return-car" method="post" id="mapForm"><button class="btn btn-primary" id="startClocking" name="booking2" value="return">return</button>
