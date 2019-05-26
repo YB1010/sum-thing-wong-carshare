@@ -95,8 +95,8 @@ function initMap() {
             });
             map.setCenter(pos);
 //http://pngimg.com/uploads/taxi/taxi_PNG7.png
-            image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-
+            //image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            image = '../web/img/car.png';
             userLatLng = {
                 latitude: user.getPosition().lat(),
                 longitude: user.getPosition().lng()
