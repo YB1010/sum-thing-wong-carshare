@@ -23,9 +23,8 @@ function getCars(){
 function displayPopupWindows(carMaker,carInfo,map,userLatLng) {
     callDistance(userLatLng, carInfo,function (distance) {
         var distanceStr=distance;
-        var contentString = 'Car:'+carInfo.id+'</br>Distance: '+distanceStr+
+        var contentString = 'Car:'+carInfo.carName+'</br>Distance: '+distanceStr+
             '<p><form action="" method="post" id="mapForm"><button class="btn btn-primary" id="startClocking" name="booking2" value="'+carInfo.id+'">Book</button></form></p>';
-        //var button = '<form action="" method="post" id="mapForm"> <input type="hidden" name="booking2" value="'+carInfo.id+'"><input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>"/><input type="submit" value="Book"></form>';
         var popupWindow = new google.maps.InfoWindow({
             content: contentString
         });
@@ -70,6 +69,11 @@ function putCarMakers() {
     console.log(carsMakers.length);
 }
 
+try {
+    var checkIfConfirm = document.getElementById('helper').value;
+}catch (e) {
+
+}
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
@@ -88,7 +92,6 @@ function initMap() {
             var user = new google.maps.Marker({
                 position: pos,
                 map: map,
-                title: 'Hello World!'
             });
             map.setCenter(pos);
 //http://pngimg.com/uploads/taxi/taxi_PNG7.png
@@ -99,8 +102,29 @@ function initMap() {
                 longitude: user.getPosition().lng()
             };
 
-            makeCarMakers(userLatLng, map, cars, image);
-            putCarMakers();
+            if (checkIfConfirm  === 'confirm'){
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+                var directionsService = new google.maps.DirectionsService;
+                let carid = document.getElementById('helper2').value;
+                let carSingleList = [
+                    cars[carid-1]
+                ];
+                console.log(cars);
+                console.log(carSingleList);
+
+                makeCarMakers(userLatLng, map, carSingleList, image);
+                carsMakers[carid].setMap(map);
+                let detination = {
+                    lat: parseFloat(carSingleList[0].latitude),
+                    lng: parseFloat (carSingleList[0].longitude)
+                };
+                console.log(detination);
+                directionsDisplay.setMap(map);
+                calculateAndDisplayRoute(directionsService, directionsDisplay,pos,detination);
+            }else{
+                makeCarMakers(userLatLng, map, cars, image);
+                putCarMakers();
+            }
 
 
         }, function() {
@@ -111,14 +135,38 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-window.setInterval(function(){
-    getCars();
-    putCarMakers();
-}, 5000);
+if (checkIfConfirm==null){
+    window.setInterval(function(){
+        getCars();
+        putCarMakers();
+    }, 5000);
+}
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay,origin,destination) {
+    directionsService.route({
+        origin: origin,  // Haight.
+        destination: destination,  // Ocean Beach.
+        // Note that Javascript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: 'WALKING'
+    }, function(response, status) {
+        if (status == 'OK') {
+            new google.maps.DirectionsRenderer({
+                map: map,
+                directions: response,
+                suppressMarkers: true
+            });
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }

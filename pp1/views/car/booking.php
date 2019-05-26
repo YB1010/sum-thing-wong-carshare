@@ -37,16 +37,30 @@ $jsonData = json_encode($data);
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
+
         #border{
             width: 40%;
             height: 720px;
             float: left;
             position: relative;
         }
+        @media only screen and (max-width: 620px) {
+            #border {
+                width: 100%;
+                float: left;
+                position: relative;
+            }
+        }
         #map{
-            width: 56%;
-            height: 720px;
+            width: 57%;
+            height: 763px;
             float: right;
+        }
+        @media only screen and (max-width: 620px) {
+            #map {
+                width: 100%;
+                float: right;
+            }
         }
         /* Optional: Makes the sample page fill the window. */
         /* The popup bubble styling. */
@@ -162,8 +176,13 @@ $jsonData = json_encode($data);
                     var root = document.getElementById("border");
                     function get() {
                         var html = '';
+                        var count = 0;
                         for(var i=0;i<jsdata.length;i++){
+                            if (count>4){
+                                break;
+                            }
                             if(jsdata[i]['inUse']=="available"){
+                                count++;
                                 var div='<div  style="border-bottom: 3px solid grey;margin-top: 3px;width: 100%;height:150px;" float:left ;class="panel-body">' +
                                     '<div style="float:left;width: 30%;margin-left:10px" >' +
                                     '<div ><img id="'+"img"+i+'" style="width:140%;height:100px;margin-top: 10px" src="'+"img/"+jsdata[i]['carName']+".jpg"+'"></div>' +
