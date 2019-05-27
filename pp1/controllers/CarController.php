@@ -93,9 +93,9 @@ class CarController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->carImgUrl = UploadedFile::getInstance($model,'carImgUrl');
-            $img_name = $model->carName.'.'.$model->carImgUrl->extension;
-            $img_path = 'img/'.$img_name;
+            $model->carImgUrl = UploadedFile::getInstance($model, 'carImgUrl');
+            $img_name = $model->carName . '.' . $model->carImgUrl->extension;
+            $img_path = 'img/' . $img_name;
             $model->carImgUrl->saveAs($img_path);
             $model->carImgUrl = $img_name;
             return $this->redirect(['view', 'id' => $model->id]);
@@ -184,9 +184,9 @@ class CarController extends Controller
         return $this->redirect(['car/booking']);
     }
 
-    /*If pending time over and user doesn't click of confirm button
-      Pending becomes off, Inuse becomes available
-    */
+    /**If pending time over and user doesn't click of confirm button
+     * Pending becomes off, Inuse becomes available
+     */
     public function actionTimePassed()
     {
         $model = new Car();
@@ -228,6 +228,17 @@ class CarController extends Controller
         ]);
     }
 
+    public function actionCancelCar()
+    {
+        $model = new Car();
+
+        if(isset($_POST["cancel"])){
+            $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_SESSION['carID']]);
+            return $this->redirect(['car/booking']);
+        }else{
+            return $this->render('car-confirmed');
+        }
+    }
     public function actionGetCars()
     {
         $cars = Car::find()->orderBy('id')->all();
