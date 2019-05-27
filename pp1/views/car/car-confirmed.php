@@ -47,6 +47,8 @@ echo "<input type=\"hidden\" name=\"helper\" id=\"helper2\" value=\"".$_SESSION[
             width: 20%;
             float: left;
             position: relative;
+            margin-left: 35%;
+            font-size: xx-large;
         }
     </style>
 </head>
