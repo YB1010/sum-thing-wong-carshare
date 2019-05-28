@@ -65,8 +65,6 @@ class Car extends \yii\db\ActiveRecord
 
         try {
                 $command->update('car', ['pendingTime' => 'on', 'inUse' => 'pending'], 'id = '.$id)->execute();
-
-
         } catch (Exception $e) {
             printf("Cannot update data");
         }
