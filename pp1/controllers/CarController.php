@@ -169,7 +169,7 @@ class CarController extends Controller
     }
 
     //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
-    public function actionConfirmStatus($id)
+    public function actionConfirmStatus()
     {
         $model = new Car();
         $receipt = new Receipt();
