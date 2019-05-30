@@ -38,6 +38,9 @@ AppAsset::register($this);
         ],
     ]);
 
+    /**
+     * nav bar
+     */
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [

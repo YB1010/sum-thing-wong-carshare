@@ -49,6 +49,10 @@ class Receipt extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return bool
+     * add the timestamp, balance and carId to the receipt table
+     */
     public function addRecord(){
         $model = new Receipt();
         $email = Yii::$app->session->get('email');

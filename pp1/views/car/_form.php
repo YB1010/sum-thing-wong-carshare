@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
 
-
-
     <?= $form->field($model, 'carName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'carImgUrl')->fileInput() ?>
