@@ -59,6 +59,10 @@ class Car extends \yii\db\ActiveRecord
             'numOfPassenger' => 'Num Of Passenger',
         ];
     }
+
+    /**
+     * Update database when user clicks on booking button
+     */
     public function updateBookingStatus(){
         $command = Yii::$app->db->createCommand();
         $id= Yii::$app->request->bodyParams["booking2"];

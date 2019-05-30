@@ -138,7 +138,8 @@ class CarController extends Controller
 
     /**
      * Booking car function
-     * It has a pending time.
+     * If user never login before, they will be forced to login
+     * If they already login, they can booking the car
      */
     public function actionBooking()
     {
@@ -168,7 +169,13 @@ class CarController extends Controller
         }
     }
 
-    //if user clicks of confirm button, pending becomes to off, inUse becomes to confirmed
+    /**
+     * @return \yii\web\Response
+     * User can choose whether pay for the rental car or cancel booking,
+     * If they choose to cancel booking the car, they will be redirected to the booking page
+     * If they decide to pay for the money, after they pay the money, they will be redirected to the return car page
+     * When they confirm to booking the car, carId will be added to their account
+     */
     public function actionConfirmStatus()
     {
         $model = new Car();
@@ -184,7 +191,8 @@ class CarController extends Controller
         return $this->redirect(['car/booking']);
     }
 
-    /**If pending time over and user doesn't click of confirm button
+    /**
+     * If pending time over and user doesn't click of PayPal button,
      * Pending becomes off, Inuse becomes available
      */
     public function actionTimePassed()
@@ -194,6 +202,9 @@ class CarController extends Controller
         $model::updateAll(['pendingTime' => 'off', 'inUse' => 'available'], ['id' => $_SESSION['carID']]);
     }
 
+    /**
+     * call the updateBookingStatus method
+     */
     public function actionBookingStatus()
     {
         $model = new Car();
@@ -205,6 +216,11 @@ class CarController extends Controller
         return $this->render('car-confirmed');
     }
 
+    /**
+     * @return \yii\web\Response
+     * When user clicks on return button, they will be redirected to the booking page
+     * CarId will be removed from their account, and update the database
+     */
     public function actionReturnCar()
     {
         $user = new Registration();
@@ -216,9 +232,12 @@ class CarController extends Controller
         return $this->redirect(['car/booking']);
     }
 
+    /**
+     * @return string
+     * Admin can modify car details(carName, image and No. passengers)
+     */
     public function actionModifyCar()
     {
-
         $searchModel = new CarSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -228,6 +247,11 @@ class CarController extends Controller
         ]);
     }
 
+    /**
+     * @return string|\yii\web\Response
+     * cancel booking the car , redirect the user back to the booking page
+     * and update database
+     */
     public function actionCancelCar()
     {
         $model = new Car();
@@ -239,13 +263,21 @@ class CarController extends Controller
             return $this->render('car-confirmed');
         }
     }
+
+    /**
+     * @return \yii\web\Response
+     * return cars into JSON format
+     */
     public function actionGetCars()
     {
         $cars = Car::find()->orderBy('id')->all();
         return $this->asJson($cars);
     }
 
-
+    /**
+     * @return string
+     * If users login, they can browse their rental history
+     */
     public function actionRentHistory()
     {
         $searchModel = new ReceiptSearch();

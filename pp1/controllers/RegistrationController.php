@@ -150,6 +150,10 @@ class RegistrationController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * @return string|\yii\web\Response
+     * render sign up page
+     */
     public function actionSignup()
     {
         $model = new Registration();
@@ -160,6 +164,10 @@ class RegistrationController extends Controller
         }
     }
 
+    /**
+     * @return string|\yii\web\Response
+     * render sign in page
+     */
     public function actionSignin(){
         $model = new LoginForm();
         if($model->load(Yii::$app->request->post())&&$model->login()){
@@ -168,6 +176,11 @@ class RegistrationController extends Controller
             return $this->render('signIn', ['model' => $model]);
         }
     }
+
+    /**
+     * @return string
+     * render sign out page
+     */
     public function actionSignout(){
         return $this->render('signOut');
     }

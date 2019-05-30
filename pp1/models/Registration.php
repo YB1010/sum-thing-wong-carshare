@@ -54,6 +54,12 @@ class Registration extends \yii\db\ActiveRecord
             'carId' => 'Car ID',
         ];
     }
+
+    /**
+     * @return bool|null
+     * validate the data
+     * Insert the information to the database
+     */
     public function signUp()
     {
         if (!$this->validate()) {
@@ -75,7 +81,10 @@ class Registration extends \yii\db\ActiveRecord
         return $model->save(false);
     }
 
-    // Check whether passwords match
+    /**
+     * @param $attribute
+     * validate the password with the twice time input password
+     */
     public function passwordCheck($attribute)
     {
         if ($this->password != $this->passwordVerify) {
@@ -83,11 +92,21 @@ class Registration extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * @param $email
+     * @return Registration|null
+     * find email
+     */
     public static function findByEmail($email)
     {
         return static::findOne(['email' => $email]);
     }
 
+    /**
+     * @param $password
+     * @return bool
+     * validate password for sign in
+     */
     public function validatePassword($password)
     {
         return md5($password) == $this->password;
