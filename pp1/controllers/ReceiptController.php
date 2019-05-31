@@ -29,20 +29,6 @@ class ReceiptController extends Controller
         ];
     }
 
-    /**
-     * Lists all Receipt models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new ReceiptSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
 
     /**
      * Displays a single Receipt model.
@@ -59,23 +45,6 @@ class ReceiptController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Receipt model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Receipt();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'email' => $model->email, 'carId' => $model->carId, 'startDate' => $model->startDate]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Updates an existing Receipt model.

@@ -2,8 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Car;
-use  yii\web\Session;
+
 use app\models\LoginForm;
 use Yii;
 use app\models\Registration;
