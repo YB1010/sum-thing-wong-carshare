@@ -6,9 +6,7 @@
  * Time: 4:36 PM
  */
 /* @var $this \yii\web\View */
-use app\assets\AppAsset;
 use app\models\Car;
-use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use app\assets\MapAsset;
@@ -154,6 +152,7 @@ $jsonData = json_encode($data);
     }
     ?>
     <script>
+        // Calculate the distance and show it on the list
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     for (i = 0; i < jsdata.length; i++) {
@@ -174,6 +173,7 @@ $jsonData = json_encode($data);
                         }
                     }
                     var root = document.getElementById("border");
+                    //only display the avaliable car on the list
                     function get() {
                         var html = '';
                         var count = 0;

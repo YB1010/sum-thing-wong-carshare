@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Registration', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

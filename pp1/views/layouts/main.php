@@ -50,7 +50,6 @@ AppAsset::register($this);
             ): (
             ""
             ),
-            ['label' => 'Contact', 'url' => ['/site/contact']],
             $admin == "admin@admin.com" ? ['label'=>'Admin', 'url'=>['/car/modify-car']]:"",
             isset(Yii::$app->session["email"]) ? (
             ['label' => 'LogOut', 'url' => ['/registration/signout']]

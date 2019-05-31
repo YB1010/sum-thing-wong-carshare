@@ -26,8 +26,7 @@ class PaypalCallback extends AssetBundle
         'js/paypalButton.js'
     ];
 
-//'js/map.js',
-//'//maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap',
+
     public $depends = [
     ];
 }

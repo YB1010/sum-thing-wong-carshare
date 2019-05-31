@@ -25,11 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'inUse') ?>
 
-    <?php // echo $form->field($model, 'carName') ?>
 
-    <?php // echo $form->field($model, 'carImgUrl') ?>
-
-    <?php // echo $form->field($model, 'numOfPassenger') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

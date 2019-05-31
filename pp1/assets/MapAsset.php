@@ -26,7 +26,7 @@ class MapAsset extends AssetBundle
         'js/callDistance.js'
     ];
 
-//'js/map.js',
+
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',

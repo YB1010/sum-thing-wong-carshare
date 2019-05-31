@@ -4,10 +4,9 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-use app\models\LoginForm;
+
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\web\View;
+
 
 $this->title = 'Sign out';
 $this->params['breadcrumbs'][] = ['label' => 'registration', 'url' => ['signout']];

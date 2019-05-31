@@ -25,8 +25,7 @@ class GoogleMapCallback extends AssetBundle
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap'
     ];
 
-//'js/map.js',
-//'//maps.googleapis.com/maps/api/js?key=AIzaSyCJfFLygQCdKq_IfW63CFJtb0Vw6bMEMzY&callback=initMap',
+
     public $depends = [
     ];
     public $jsOptions = ['async' => 'async'];
