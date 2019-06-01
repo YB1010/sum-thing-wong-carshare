@@ -23,6 +23,11 @@
         "yiisoft/yii2-gii": "~2.0.0"
 
     },
+	"autoload": {
+        "psr-0":{
+			"pp1":""
+		}
+    },
     "require-dev": {
         "yiisoft/yii2-faker": "~2.0.0",
 
