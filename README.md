@@ -6,4 +6,4 @@ Booking the car(list/map),
 Return the car,
 Pay via PayPal,
 Admin function,
-rental histroy
+rent history
