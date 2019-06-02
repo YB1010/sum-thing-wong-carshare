@@ -1,0 +1,14 @@
+Car Share website(SOCAR) version 1.0
+Functionality:
+Booking the car(list/map)
+Return the car
+Pay via PayPal
+Admin function
+rental histroy
+
+All functions passed continuous integration and continuous delivery
+
+Issue left:
+PayPal button may encounter just "loading" problem because of the instablity of the API
+
+If the futher update is needed, update information will be shown in the README.md
