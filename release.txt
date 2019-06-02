@@ -4,7 +4,7 @@ Booking the car(list/map)
 Return the car
 Pay via PayPal
 Admin function
-rental histroy
+rent history
 
 All functions passed continuous integration and continuous delivery
 
